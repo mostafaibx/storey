@@ -12,7 +12,9 @@ import { Input } from '../ui/input';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import useAuth from '@/composables/useAuth';
+
 const LoginForm = () => {
+  // move this to types when start working on them
   const formSchema = z.object({
     identifier: z.string().email(),
     password: z
@@ -24,6 +26,7 @@ const LoginForm = () => {
         'Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character'
       ),
   });
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {

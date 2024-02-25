@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import ProductCard from '../ProductCard/ProductCard';
 import { Skeleton } from '../../ui/skeleton';
+import useProductsQuery from '@/composables/useProducts';
 
 type Product = {
   createdAt: string;
@@ -15,19 +16,7 @@ type Product = {
 };
 
 const ProductsGrid = () => {
-  const getAllProducts = async () => {
-    const data = await fetch(
-      `${import.meta.env.VITE_SERVER_URL}/api/products?populate=thumbnail`
-    );
-    const result = await data.json();
-    return result;
-  };
-
-  const { data, isLoading } = useQuery({
-    queryKey: ['products'],
-    queryFn: getAllProducts,
-  });
-
+  const { data, isLoading } = useProductsQuery();
   if (isLoading)
     return (
       <div className='container mx-auto px-4 py-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 items-center'>

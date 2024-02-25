@@ -12,13 +12,12 @@ import CartDrawer from '../Cart/CartDrawer';
 import { useState } from 'react';
 
 const UserTab = () => {
+  const { data } = useUserQuery();
   const [isCartOpen, setIsCartOpen] = useState(false);
 
   const openCartHandler = () => {
     setIsCartOpen(true);
   };
-
-  const { data } = useUserQuery();
 
   return (
     <div className='w-32 bg-slate-300 rounded-lg flex flex-row justify-between px-2 py-1'>
