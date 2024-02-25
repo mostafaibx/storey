@@ -8,14 +8,10 @@ import {
   DrawerTitle,
 } from '@/components/ui/drawer';
 import { Button } from '../ui/button';
-import { useDispatch, useSelector } from 'react-redux';
-import { openCart, selectCart } from '@/store/cartSlice';
 
-const CartDrawer = () => {
-  const { isOpen } = useSelector(selectCart);
-  const dispatch = useDispatch();
+const CartDrawer = ({ isOpen }) => {
   const openCartHandler = () => {
-    dispatch(openCart());
+    //emit event to close cart
   };
 
   return (

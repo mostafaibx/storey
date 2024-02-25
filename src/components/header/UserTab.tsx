@@ -7,16 +7,15 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import useUserQuery from '@/composables/useUserQuery';
-import { openCart, selectCart } from '@/store/cartSlice';
 import { ShoppingCartIcon } from '@heroicons/react/24/solid';
-import { useDispatch, useSelector } from 'react-redux';
+import CartDrawer from '../Cart/CartDrawer';
+import { useState } from 'react';
 
 const UserTab = () => {
-  const { cart } = useSelector(selectCart);
-  const dispatch = useDispatch();
+  const [isCartOpen, setIsCartOpen] = useState(false);
 
   const openCartHandler = () => {
-    dispatch(openCart());
+    setIsCartOpen(true);
   };
 
   const { data } = useUserQuery();
@@ -38,8 +37,9 @@ const UserTab = () => {
           className='h-6 w-6'
           onClick={openCartHandler}
         />
-        <span className='text-xs'>{cart.length}</span>
+        <span className='text-xs'>{data?.cart?.length}</span>
       </div>
+      <CartDrawer isOpen={isCartOpen} />
     </div>
   );
 };
