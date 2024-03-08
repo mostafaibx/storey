@@ -1,8 +1,10 @@
 import { options } from '@/utils/auth';
 import { toast } from '@/components/ui/use-toast';
 import CookiesServices from '@/services/CookiesServices';
+import { loginCredentials, signupCredentials } from '@/types/types';
+import { redirect } from 'react-router-dom';
 
-export const loginMutationFn = async (userCredintials: any) => {
+export const loginMutationFn = async (userCredintials: loginCredentials) => {
   const response = await fetch(
     `${import.meta.env.VITE_SERVER_URL}/api/auth/local`,
     {
@@ -18,6 +20,7 @@ export const loginMutationFn = async (userCredintials: any) => {
     toast({
       description: 'Login failed.',
     });
+    return;
   }
   const data = await response.json();
 
@@ -25,10 +28,11 @@ export const loginMutationFn = async (userCredintials: any) => {
   toast({
     description: 'Login successful.',
   });
+  window.location.reload();
   return data;
 };
 
-export const signupMutationFn = async (userCredintials: any) => {
+export const signupMutationFn = async (userCredintials: signupCredentials) => {
   const response = await fetch(
     `${import.meta.env.VITE_SERVER_URL}/api/auth/local/register `,
     {

@@ -1,15 +1,17 @@
-import { Button } from '@/components/ui/button';
+import CartTable from '@/components/Cart/CartTable';
 import {
   Table,
   TableBody,
   TableCaption,
-  TableCell,
   TableHead,
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
 
+import useCart from '@/composables/useCart';
+
 const CartPage = () => {
+  const { cart } = useCart();
   return (
     <div className='flex h-screen w-screen'>
       <div className='bg-gray-300 w-9/12 px-12'>
@@ -28,36 +30,13 @@ const CartPage = () => {
             </TableRow>
           </TableHeader>
           <TableBody>
-            <TableRow>
-              <TableCell className='font-medium'>
-                <img src='https://flowbite.com/docs/images/logo.svg' />
-              </TableCell>
-              <TableCell>Paid</TableCell>
-              <TableCell>
-                <Button size={'sm'}>+</Button>1<Button size={'sm'}>-</Button>
-              </TableCell>
-              <TableCell className='text-right'>$250.00</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell className='font-medium'>
-                <img src='https://flowbite.com/docs/images/logo.svg' />
-              </TableCell>
-              <TableCell>Paid</TableCell>
-              <TableCell>
-                <Button size={'sm'}>+</Button>1<Button size={'sm'}>-</Button>
-              </TableCell>
-              <TableCell className='text-right'>$250.00</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell className='font-medium'>
-                <img src='https://flowbite.com/docs/images/logo.svg' />
-              </TableCell>
-              <TableCell>Paid</TableCell>
-              <TableCell>
-                <Button size={'sm'}>+</Button>1<Button size={'sm'}>-</Button>
-              </TableCell>
-              <TableCell className='text-right'>$250.00</TableCell>
-            </TableRow>
+            {cart &&
+              cart.items.map((item) => (
+                <CartTable
+                  key={item.pid}
+                  item={item}
+                />
+              ))}
           </TableBody>
         </Table>
       </div>

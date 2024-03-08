@@ -11,8 +11,11 @@ import { ShoppingCartIcon } from '@heroicons/react/24/solid';
 import CartDrawer from '../Cart/CartDrawer';
 import { useState } from 'react';
 
+import useAuth from '@/composables/useAuth';
+
 const UserTab = () => {
   const { data } = useUserQuery();
+  const { logout } = useAuth();
   const [isCartOpen, setIsCartOpen] = useState(false);
 
   const openCartHandler = () => {
@@ -28,7 +31,7 @@ const UserTab = () => {
           <DropdownMenuSeparator />
           <DropdownMenuItem>Profile</DropdownMenuItem>
           <DropdownMenuItem>Billing</DropdownMenuItem>
-          <DropdownMenuItem>Log Out</DropdownMenuItem>
+          <DropdownMenuItem onClick={() => logout()}>Log Out</DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
       <div className='flex flex-row justify-between items-center'>

@@ -9,32 +9,23 @@ import {
 } from '../../ui/card';
 
 import { textSlicer } from '../../../utils/functions';
-import useCartMutation from '@/composables/useCartMutation';
-
-type Product = {
-  createdAt: string;
-  description: string;
-  pid: string;
-  price: number;
-  publishedAt: string;
-  rating: number; // TODO: change it into object with number of rates and average rate
-  stock: number;
-  title: string;
-  updatedAt: string;
-  thumbnail: {
-    data: {
-      attributes: {
-        url: string;
-      };
-    };
-  };
-};
+import useCart from '@/composables/useCart';
+import { Product, cartItem } from '@/types/types';
 
 const ProductCard = ({ product }: { product: Product }) => {
-  const { mutate } = useCartMutation();
+  const { addToCart } = useCart();
 
   const addToCartHandler = () => {
-    mutate(product);
+    const cartItem: cartItem = {
+      pid: product.pid,
+      stock: product.stock,
+      title: product.title,
+      price: product.price,
+      thumbnail: product.thumbnail?.data?.attributes?.url,
+      quantity: 1,
+    };
+    addToCart(cartItem);
+    console.log(cartItem);
   };
 
   return (

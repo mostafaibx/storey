@@ -1,6 +1,7 @@
 import useAuth from '@/composables/useAuth';
 import { Button } from '../ui/button';
 import UserTab from './UserTab';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   const { isLogin } = useAuth();
@@ -11,7 +12,9 @@ const Header = () => {
       {isLogin() && <UserTab />}
       {!isLogin() && (
         <div className='flex flex-row gap-2'>
-          <Button>Login</Button>
+          <Link to='/login'>
+            <Button>Login</Button>
+          </Link>
           <Button>Signup</Button>
         </div>
       )}

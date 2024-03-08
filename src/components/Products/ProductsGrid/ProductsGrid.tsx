@@ -1,19 +1,7 @@
-import { useQuery } from '@tanstack/react-query';
 import ProductCard from '../ProductCard/ProductCard';
 import { Skeleton } from '../../ui/skeleton';
 import useProductsQuery from '@/composables/useProducts';
-
-type Product = {
-  createdAt: string;
-  description: string;
-  pid: string;
-  price: number;
-  publishedAt: string;
-  rating: number; // TODO: change it into object with number of rates and average rate
-  stock: number;
-  title: string;
-  updatedAt: string;
-};
+import { Product } from '@/types/types';
 
 const ProductsGrid = () => {
   const { data, isLoading } = useProductsQuery();

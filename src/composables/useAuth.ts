@@ -23,6 +23,7 @@ const useAuth = () => {
 
   const logout = () => {
     CookiesServices.remove('jwt');
+    window.location.reload();
   };
 
   return {
