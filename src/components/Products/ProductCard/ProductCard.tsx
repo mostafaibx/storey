@@ -17,7 +17,7 @@ const ProductCard = ({ product }: { product: Product }) => {
 
   const addToCartHandler = () => {
     const cartItem: cartItem = {
-      pid: product.pid,
+      id: product.pid,
       stock: product.stock,
       title: product.title,
       price: product.price,
@@ -25,7 +25,6 @@ const ProductCard = ({ product }: { product: Product }) => {
       quantity: 1,
     };
     addToCart(cartItem);
-    console.log(cartItem);
   };
 
   return (

@@ -8,7 +8,6 @@ import LoginPage from './Pages/LoginPage';
 import CartPage from './Pages/CartPage';
 import LoggedinPrivateRoute from './Pages/LoggedinPrivateRoute';
 import LoggedoutPrivateRoute from './Pages/LoggedoutPrivateRoute';
-import NetworkStateProvider from './providers/NetworkStateProvider';
 
 function App() {
   const router = createBrowserRouter([
@@ -23,13 +22,13 @@ function App() {
         },
         {
           // routes that cant be accessed after login
-          path: '',
+          path: '/',
           element: <LoggedinPrivateRoute />,
-          children: [{ path: '/login', element: <LoginPage /> }],
+          children: [{ path: 'login', element: <LoginPage /> }],
         },
         {
           // routes that can be accessed after login
-          path: '',
+          path: '/',
           element: <LoggedoutPrivateRoute />,
           children: [{ path: 'cart', element: <CartPage /> }],
         },

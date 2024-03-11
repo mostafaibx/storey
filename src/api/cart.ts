@@ -1,3 +1,4 @@
+import { toast } from '@/components/ui/use-toast';
 import CookiesServices from '@/services/CookiesServices';
 import { cartItem } from '@/types/types';
 
@@ -10,6 +11,12 @@ export const updateCart = async (cartItem: cartItem) => {
     method: 'POST',
     body: JSON.stringify(cartItem),
   });
+  if (!res.ok) {
+    toast({
+      description: 'Something went wrong. Please try again.',
+      variant: 'destructive',
+    });
+  }
   const data = await res.json();
   return data;
 };
@@ -20,6 +27,12 @@ export const getCartItems = async () => {
       Authorization: `Bearer ${CookiesServices.get('jwt')}`,
     },
   });
+  if (!response.ok) {
+    toast({
+      description: 'Something went wrong. Please try again.',
+      variant: 'destructive',
+    });
+  }
   const data = await response.json();
   return data;
 };
@@ -28,9 +41,16 @@ export const deleteCartItems = async (id: string) => {
     method: 'DELETE',
     headers: {
       Authorization: `Bearer ${CookiesServices.get('jwt')}`,
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify({ id }),
   });
+  if (!response.ok) {
+    toast({
+      description: 'Could not delete item. Please try again.',
+      variant: 'destructive',
+    });
+  }
   const data = await response.json();
   return data;
 };

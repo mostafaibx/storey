@@ -31,7 +31,7 @@ const CartPage = () => {
           </TableHeader>
           <TableBody>
             {cart &&
-              cart.items.map((item) => (
+              cart?.items.map((item) => (
                 <CartTable
                   key={item.pid}
                   item={item}

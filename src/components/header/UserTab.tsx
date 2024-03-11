@@ -14,13 +14,14 @@ import { useState } from 'react';
 import useAuth from '@/composables/useAuth';
 
 const UserTab = () => {
-  const { data } = useUserQuery();
   const { logout } = useAuth();
   const [isCartOpen, setIsCartOpen] = useState(false);
 
   const openCartHandler = () => {
     setIsCartOpen(true);
   };
+
+  const { isLogin } = useAuth();
 
   return (
     <div className='w-32 bg-slate-300 rounded-lg flex flex-row justify-between px-2 py-1'>
@@ -39,9 +40,14 @@ const UserTab = () => {
           className='h-6 w-6'
           onClick={openCartHandler}
         />
-        <span className='text-xs'>{data?.cart?.length}</span>
       </div>
-      <CartDrawer isOpen={isCartOpen} />
+
+      {isLogin() && (
+        <CartDrawer
+          isOpen={isCartOpen}
+          onCloseCart={() => setIsCartOpen(false)}
+        />
+      )}
     </div>
   );
 };
