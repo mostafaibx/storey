@@ -14,7 +14,7 @@ const CartPage = () => {
   const { cart } = useCart();
   return (
     <div className='flex h-screen w-screen'>
-      <div className='bg-gray-300 w-9/12 px-12'>
+      <div className='bg-amber-500 w-9/12 px-12 pt-20'>
         <div className='flex flex-row justify-between px-8 py-6 text-2xl font-semibold border-b-2 mx-8'>
           <h1>Your Shopping Cart</h1>
           <p>Items: 4</p>
@@ -40,7 +40,7 @@ const CartPage = () => {
           </TableBody>
         </Table>
       </div>
-      <div className='bg-gray-500 w-3/12'>
+      <div className='bg-amber-900 w-3/12 pt-20'>
         <div className='flex flex-row justify-between px-8 py-6 text-2xl font-semibold border-b-2 mx-8'>
           <h1>Order Summary</h1>
         </div>

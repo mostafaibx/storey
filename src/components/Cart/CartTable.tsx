@@ -5,7 +5,10 @@ const CartTable = ({ item }) => {
     <>
       <TableRow>
         <TableCell className='font-medium'>
-          <img src={`${import.meta.env.VITE_SERVER_URL}${item.thumbnail}`} />
+          <img
+            className='w-16 h-auto bg-cover rounded-lg'
+            src={`${import.meta.env.VITE_SERVER_URL}${item.thumbnail}`}
+          />
         </TableCell>
         <TableCell>{item.title}</TableCell>
         <TableCell>1</TableCell>

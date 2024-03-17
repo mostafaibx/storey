@@ -1,20 +1,13 @@
 import { useForm } from 'react-hook-form';
 import { Button } from '../ui/button';
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '../ui/form';
-import { Input } from '../ui/input';
+import { Form } from '../ui/form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import useAuth from '@/composables/useAuth';
+import { Link } from 'react-router-dom';
+import FormFieldItem from './FormFieldItem';
 
 const LoginForm = () => {
-  // move this to types when start working on them
   const formSchema = z.object({
     identifier: z.string().email(),
     password: z
@@ -41,46 +34,43 @@ const LoginForm = () => {
     login(data);
   };
 
+  const loginFields = [
+    {
+      form: form,
+      name: 'identifier',
+      label: 'Email',
+      placeholder: 'Joe@doe.com',
+      type: 'email',
+    },
+    {
+      form: form,
+      name: 'password',
+      label: 'Password',
+      placeholder: '**********',
+      type: 'password',
+    },
+  ];
+
   return (
-    <div className='w-72 px-8 py-4 border-spacing-1 border border-slate-300'>
+    <div className='w-72 px-8 py-4 border-spacing-1 border-2 border-slate-300'>
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
           className='space-y-8'
         >
-          <FormField
-            control={form.control}
-            name='identifier'
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Email</FormLabel>
-                <FormControl>
-                  <Input
-                    placeholder='Joe@doe.com'
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name='password'
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Password</FormLabel>
-                <FormControl>
-                  <Input
-                    placeholder='JoeDoe@1234'
-                    {...field}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <Button type='submit'>Submit</Button>
+          {loginFields.map((fld) => (
+            <FormFieldItem
+              key={fld.name}
+              fld={fld}
+            />
+          ))}
+          <Button type='submit'>Login</Button>
+          <Link
+            className='text-xs font-thin px-2'
+            to='/register'
+          >
+            Don't have an account?
+          </Link>
         </form>
       </Form>
     </div>

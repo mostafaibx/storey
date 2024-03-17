@@ -36,3 +36,11 @@ export type loginCredentials = {
   identifier: string;
   password: string;
 };
+
+export type formField = {
+  form: any;
+  name: string;
+  label: string;
+  placeholder: string;
+  type: string;
+};

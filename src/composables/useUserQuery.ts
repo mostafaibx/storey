@@ -1,10 +1,10 @@
-import { getCartItems } from '@/api/cart';
+import { getUserData } from '@/api/user';
 import { useQuery } from '@tanstack/react-query';
 
 const useUserQuery = () => {
   const { data, isLoading, error } = useQuery({
-    queryKey: ['cart'],
-    queryFn: getCartItems,
+    queryKey: ['user'],
+    queryFn: getUserData,
   });
   return { data, isLoading, error };
 };

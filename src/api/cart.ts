@@ -18,6 +18,12 @@ export const updateCart = async (cartItem: cartItem) => {
     });
   }
   const data = await res.json();
+  if (data.error.status === 401) {
+    toast({
+      description: 'Please Login to be able to add items to cart',
+      variant: 'destructive',
+    });
+  }
   return data;
 };
 

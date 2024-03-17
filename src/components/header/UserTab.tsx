@@ -16,17 +16,21 @@ import useAuth from '@/composables/useAuth';
 const UserTab = () => {
   const { logout } = useAuth();
   const [isCartOpen, setIsCartOpen] = useState(false);
-
+  const { data: user } = useUserQuery();
   const openCartHandler = () => {
-    setIsCartOpen(true);
+    if (window.screen.width <= 768) {
+      setIsCartOpen(true);
+    } else {
+      window.location.assign('/cart');
+    }
   };
 
   const { isLogin } = useAuth();
 
   return (
-    <div className='w-32 bg-slate-300 rounded-lg flex flex-row justify-between px-2 py-1'>
+    <div className='w-32  rounded-lg flex flex-row justify-between px-2 py-1'>
       <DropdownMenu>
-        <DropdownMenuTrigger>Username</DropdownMenuTrigger>
+        <DropdownMenuTrigger>{user?.username}</DropdownMenuTrigger>
         <DropdownMenuContent>
           <DropdownMenuLabel>My Account</DropdownMenuLabel>
           <DropdownMenuSeparator />
