@@ -9,6 +9,7 @@ import {
 } from '@/components/ui/table';
 
 import useCart from '@/composables/useCart';
+import { cartItem } from '@/types/types';
 
 const CartPage = () => {
   const { cart } = useCart();
@@ -31,7 +32,7 @@ const CartPage = () => {
           </TableHeader>
           <TableBody>
             {cart &&
-              cart?.items.map((item) => (
+              cart?.items.map((item: cartItem) => (
                 <CartTable
                   key={item.pid}
                   item={item}

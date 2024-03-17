@@ -1,6 +1,7 @@
+import { cartItem } from '@/types/types';
 import { TableCell, TableRow } from '../ui/table';
 
-const CartTable = ({ item }) => {
+const CartTable = ({ item }: { item: cartItem }) => {
   return (
     <>
       <TableRow>
