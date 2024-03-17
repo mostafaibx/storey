@@ -1,8 +1,23 @@
-# React + TypeScript + Vite
+# Coffee Shop
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+CoffeeShop is a fullstack showcase web application built with React, Typescript, and Strapi as a headless CMS.
 
-Currently, two official plugins are available:
+## Technologies Used
+
+### Frontend:
+
+- [React with Vite](https://vitejs.dev/guide/)
+- Typescript: https://www.typescriptlang.org/
+- Tanstack Query: https://tanstack.com/query
+- Tailwind CSS: https://tailwindcss.com/docs/installation
+- Shaden: https://ui.shadcn.com/
+- R3F: https://docs.pmnd.rs/ (likely for 3D components)
+- Zod: https://zod.dev/
+- React Router: https://reacttraining.com/react-router
+
+### Backend:
+
+- Strapi: https://strapi.io/ (self-hosted or cloud version)
 
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
