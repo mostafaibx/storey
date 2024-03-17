@@ -1,15 +1,18 @@
 import { loginMutationFn, signupMutationFn } from '@/api/auth';
 import CookiesServices from '@/services/CookiesServices';
+import { loginCredentials, signupCredentials } from '@/types/types';
 import { useMutation } from '@tanstack/react-query';
 
 const useAuth = () => {
   const { mutate: login } = useMutation({
     mutationKey: ['auth'],
-    mutationFn: (userCredintials) => loginMutationFn(userCredintials),
+    mutationFn: (userCredintials: loginCredentials) =>
+      loginMutationFn(userCredintials),
   });
   const { mutate: signup } = useMutation({
     mutationKey: ['auth'],
-    mutationFn: (userCredintials) => signupMutationFn(userCredintials),
+    mutationFn: (userCredintials: signupCredentials) =>
+      signupMutationFn(userCredintials),
   });
 
   const isLogin = () => {

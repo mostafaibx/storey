@@ -1,10 +1,10 @@
-const ErrorPage = () => {
+const ReceipiesPage = () => {
   return (
     <div className='flex h-screen justify-center items-center pt-20'>
       {' '}
-      ErrorPage{' '}
+      Receipies{' '}
     </div>
   );
 };
 
-export default ErrorPage;
+export default ReceipiesPage;

@@ -9,6 +9,11 @@ import CartPage from './Pages/CartPage';
 import LoggedinPrivateRoute from './Pages/LoggedinPrivateRoute';
 import LoggedoutPrivateRoute from './Pages/LoggedoutPrivateRoute';
 import RegisterPage from './Pages/RegisterPage';
+import AboutUsPage from './Pages/AboutUsPage';
+import StorePage from './Pages/StorePage';
+import ReceipiesPage from './Pages/ReceipiesPage';
+import ProductPage from './Pages/ProductPage';
+import ContactUsPage from './Pages/ContactUsPage';
 
 function App() {
   const router = createBrowserRouter([
@@ -20,6 +25,26 @@ function App() {
         {
           index: true,
           element: <HomePage />,
+        },
+        {
+          path: 'about-us',
+          element: <AboutUsPage />,
+        },
+        {
+          path: 'contact-us',
+          element: <ContactUsPage />,
+        },
+        {
+          path: 'store',
+          element: <StorePage />,
+        },
+        {
+          path: 'recipes',
+          element: <ReceipiesPage />,
+        },
+        {
+          path: 'store/:id',
+          element: <ProductPage />,
         },
         {
           // routes that cant be accessed after login

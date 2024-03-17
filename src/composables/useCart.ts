@@ -1,5 +1,6 @@
 import { deleteCartItems, getCartItems, updateCart } from '@/api/cart';
 import CookiesServices from '@/services/CookiesServices';
+import { cartItem } from '@/types/types';
 import { useMutation, useQuery } from '@tanstack/react-query';
 
 const useCart = () => {
@@ -11,11 +12,11 @@ const useCart = () => {
 
   const { mutate: addToCart } = useMutation({
     mutationKey: ['cart'],
-    mutationFn: (cartItem) => updateCart(cartItem),
+    mutationFn: (cartItem: cartItem) => updateCart(cartItem),
   });
   const { mutate: removeFromCart } = useMutation({
     mutationKey: ['cart'],
-    mutationFn: (id) => deleteCartItems(id),
+    mutationFn: (id: string) => deleteCartItems(id),
   });
 
   return { addToCart, cart, removeFromCart, isLoading };

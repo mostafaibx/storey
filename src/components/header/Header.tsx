@@ -1,7 +1,6 @@
 import useAuth from '@/composables/useAuth';
 import UserTab from './UserTab';
 import { Link } from 'react-router-dom';
-import useUserQuery from '@/composables/useUserQuery';
 
 const Header = () => {
   const { isLogin } = useAuth();
@@ -12,10 +11,18 @@ const Header = () => {
         <p className='text-3xl font-extrabold'>Logo</p>
       </Link>
       <div className='md:flex flex-row gap-8 md:text-lg hidden'>
-        <p>Products</p>
-        <p>Receipies</p>
-        <p>About US</p>
-        <p>Contact</p>
+        <Link to={'/store'}>
+          <p>Products</p>
+        </Link>
+        <Link to={'/recipes'}>
+          <p>Receipies</p>
+        </Link>
+        <Link to={'/about-us'}>
+          <p>About Us</p>
+        </Link>
+        <Link to={'/contact-us'}>
+          <p>Contact Us</p>
+        </Link>
       </div>
       {isLogin() && <UserTab />}
       {!isLogin() && (

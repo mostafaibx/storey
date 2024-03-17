@@ -10,8 +10,14 @@ import {
 import { Button } from '../ui/button';
 import useCart from '@/composables/useCart';
 import CartDrawerElement from './CartDrawerElement';
+import { cartItem } from '@/types/types';
 
-const CartDrawer = ({ isOpen, onCloseCart }) => {
+type cartDrawerProps = {
+  isOpen: boolean;
+  onCloseCart: () => void;
+};
+
+const CartDrawer = ({ isOpen, onCloseCart }: cartDrawerProps) => {
   const openCartHandler = () => {
     //emit event to close cart
     onCloseCart();
@@ -30,7 +36,7 @@ const CartDrawer = ({ isOpen, onCloseCart }) => {
             </DrawerDescription>
           </DrawerHeader>
           {cart &&
-            cart.items.map((item) => (
+            cart.items.map((item: cartItem) => (
               <CartDrawerElement
                 key={item.id}
                 item={item}

@@ -34,7 +34,7 @@ const CartPage = () => {
             {cart &&
               cart?.items.map((item: cartItem) => (
                 <CartTable
-                  key={item.pid}
+                  key={item.id}
                   item={item}
                 />
               ))}

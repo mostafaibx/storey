@@ -1,6 +1,7 @@
+import { cartItem } from '@/types/types';
 import { Button } from '../ui/button';
 import useCart from '@/composables/useCart';
-const CartDrawerElement = ({ item }) => {
+const CartDrawerElement = ({ item }: { item: cartItem }) => {
   const { removeFromCart } = useCart();
 
   return (
@@ -18,7 +19,7 @@ const CartDrawerElement = ({ item }) => {
         <Button
           variant='destructive'
           size={'sm'}
-          onClick={() => removeFromCart(item.pid)}
+          onClick={() => removeFromCart(item.id)}
         >
           X
         </Button>

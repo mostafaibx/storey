@@ -1,3 +1,5 @@
+import { UseFormReturn } from 'react-hook-form';
+
 export type Product = {
   createdAt: string;
   description: string;
@@ -18,7 +20,7 @@ export type Product = {
 };
 
 export type cartItem = {
-  pid: string;
+  id: string;
   stock: number;
   title: string;
   quantity?: number;
@@ -38,7 +40,7 @@ export type loginCredentials = {
 };
 
 export type formField = {
-  form: any;
+  form: UseFormReturn<any, any, any>;
   name: string;
   label: string;
   placeholder: string;
