@@ -1,3 +1,4 @@
+import { Address } from 'cluster';
 import { UseFormReturn } from 'react-hook-form';
 
 export type Product = {
@@ -45,4 +46,23 @@ export type formField = {
   label: string;
   placeholder: string;
   type: string;
+};
+
+export type adress = {
+  id?: string;
+  street: string;
+  plz: string;
+  city: string;
+  country: string;
+};
+
+export type OrderStatus = 'pending' | 'preparing' | 'on the way' | 'delivered';
+export type Order = {
+  id?: string;
+  items: Product[];
+  total?: number;
+  date: Date;
+  status: OrderStatus;
+  address: adress;
+  paymentMethod: 'cod' | 'paypal';
 };

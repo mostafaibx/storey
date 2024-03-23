@@ -14,6 +14,7 @@ import StorePage from './Pages/StorePage';
 import ReceipiesPage from './Pages/ReceipiesPage';
 import ProductPage from './Pages/ProductPage';
 import ContactUsPage from './Pages/ContactUsPage';
+import CheckoutPage from './Pages/CheckoutPage';
 
 function App() {
   const router = createBrowserRouter([
@@ -59,7 +60,10 @@ function App() {
           // routes that can be accessed after login
           path: '/',
           element: <LoggedoutPrivateRoute />,
-          children: [{ path: 'cart', element: <CartPage /> }],
+          children: [
+            { path: 'cart', element: <CartPage /> },
+            { path: 'checkout', element: <CheckoutPage /> },
+          ],
         },
       ],
     },

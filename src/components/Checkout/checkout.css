@@ -1,0 +1,12 @@
+.checkout-input {
+  @apply bg-gray-100 w-full px-3 py-2 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500;
+}
+
+.checkout-label {
+  @apply mt-4 mr-2 text-sm font-medium text-gray-700;
+}
+
+.credit-card-div {
+  aspect-ratio: 8/5;
+  @apply lg:w-96 w-80 bg-blue-500 rounded-xl grid grid-cols-2 grid-rows-3 shadow-xl shadow-slate-400;
+}

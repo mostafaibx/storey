@@ -6,7 +6,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import useUserQuery from '@/composables/useUserQuery';
+import useUserQuery from '@/composables/useUser';
 import { ShoppingCartIcon } from '@heroicons/react/24/solid';
 import CartDrawer from '../Cart/CartDrawer';
 import { useState } from 'react';
