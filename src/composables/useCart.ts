@@ -1,4 +1,9 @@
-import { deleteCartItems, getCartItems, updateCart } from '@/api/cart';
+import {
+  clearCartMutationFn,
+  deleteCartItemsMutationFn,
+  getCartItems,
+  updateCartMutationFn,
+} from '@/api/cart';
 import CookiesServices from '@/services/CookiesServices';
 import { cartItem } from '@/types/types';
 import { useMutation, useQuery } from '@tanstack/react-query';
@@ -12,14 +17,18 @@ const useCart = () => {
 
   const { mutate: addToCart } = useMutation({
     mutationKey: ['cart'],
-    mutationFn: (cartItem: cartItem) => updateCart(cartItem),
+    mutationFn: (cartItem: cartItem) => updateCartMutationFn(cartItem),
   });
   const { mutate: removeFromCart } = useMutation({
     mutationKey: ['cart'],
-    mutationFn: (id: string) => deleteCartItems(id),
+    mutationFn: (id: string) => deleteCartItemsMutationFn(id),
+  });
+  const { mutate: clearCart } = useMutation({
+    mutationKey: ['cart'],
+    mutationFn: () => clearCartMutationFn(),
   });
 
-  return { addToCart, cart, removeFromCart, isLoading };
+  return { addToCart, cart, removeFromCart, isLoading, clearCart };
 };
 
 export default useCart;

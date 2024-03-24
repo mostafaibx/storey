@@ -3,6 +3,8 @@ import chip from '@/assets/chip.png';
 import './checkout.css';
 import visa from '@/assets/visa.png';
 import mastercard from '@/assets/mastercard.png';
+import useCart from '@/composables/useCart';
+import { useNavigate } from 'react-router-dom';
 type CardType = {
   name: string;
   pattern: RegExp;
@@ -18,6 +20,7 @@ const CARD_TYPES: CardType[] = [
 ];
 
 const CreditCardForm = () => {
+  const navigate = useNavigate();
   const [cardHolderName, setCardHolderName] = useState('');
   const [cardNumber, setCardNumber] = useState('');
   const [cardType, setCardType] = useState<string | null>(null);
@@ -62,12 +65,14 @@ const CreditCardForm = () => {
     // Implement validation logic here
     return cardNumber.length > 0 && expiryDate.length > 0 && cvv.length > 0;
   };
-
+  const { clearCart } = useCart();
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     if (isFormValid()) {
       console.log('Form submitted:', { cardNumber, expiryDate, cvv });
+      clearCart();
+      navigate('/ordersubmitted/132ßß293444343049309');
     } else {
       console.error('Form validation failed');
     }

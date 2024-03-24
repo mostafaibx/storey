@@ -58,7 +58,6 @@ export const updateOrderStatusMutationFn = async (
       variant: 'destructive',
     });
   }
-  // clear all items in cart
 
   const data = await response.json();
   return data;

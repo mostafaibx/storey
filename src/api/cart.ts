@@ -2,7 +2,7 @@ import { toast } from '@/components/ui/use-toast';
 import CookiesServices from '@/services/CookiesServices';
 import { cartItem } from '@/types/types';
 
-export const updateCart = async (cartItem: cartItem) => {
+export const updateCartMutationFn = async (cartItem: cartItem) => {
   const res = await fetch(`${import.meta.env.VITE_SERVER_URL}/api/cart`, {
     headers: {
       Authorization: `Bearer ${CookiesServices.get('jwt')}`,
@@ -42,18 +42,38 @@ export const getCartItems = async () => {
   const data = await response.json();
   return data;
 };
-export const deleteCartItems = async (id: string) => {
+export const deleteCartItemsMutationFn = async (id: string) => {
+  const response = await fetch(
+    `${import.meta.env.VITE_SERVER_URL}/api/cart/${id}`,
+    {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${CookiesServices.get('jwt')}`,
+        'Content-Type': 'application/json',
+      },
+    }
+  );
+  if (!response.ok) {
+    toast({
+      description: 'Could not delete item. Please try again.',
+      variant: 'destructive',
+    });
+  }
+  const data = await response.json();
+  return data;
+};
+
+export const clearCartMutationFn = async () => {
   const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/api/cart`, {
     method: 'DELETE',
     headers: {
       Authorization: `Bearer ${CookiesServices.get('jwt')}`,
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({ id }),
   });
   if (!response.ok) {
     toast({
-      description: 'Could not delete item. Please try again.',
+      description: 'Could not clear cart. Please try again.',
       variant: 'destructive',
     });
   }

@@ -17,6 +17,7 @@ import ContactUsPage from './Pages/ContactUsPage';
 import CheckoutPage from './Pages/CheckoutPage';
 import ProfilePage from './Pages/ProfilePage';
 import OrdersPage from './Pages/OrdersPage';
+import OrderSubmitted from './Pages/OrderSubmitted';
 
 function App() {
   const router = createBrowserRouter([
@@ -67,6 +68,7 @@ function App() {
             { path: 'checkout', element: <CheckoutPage /> },
             { path: 'profile', element: <ProfilePage /> },
             { path: 'orders', element: <OrdersPage /> },
+            { path: 'ordersubmitted/:id', element: <OrderSubmitted /> },
           ],
         },
       ],
