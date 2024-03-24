@@ -6,17 +6,18 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import useUserQuery from '@/composables/useUser';
 import { ShoppingCartIcon } from '@heroicons/react/24/solid';
 import CartDrawer from '../Cart/CartDrawer';
 import { useState } from 'react';
 
 import useAuth from '@/composables/useAuth';
+import useUser from '@/composables/useUser';
+import { Link } from 'react-router-dom';
 
 const UserTab = () => {
   const { logout } = useAuth();
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const { data: user } = useUserQuery();
+  const { user } = useUser();
   const openCartHandler = () => {
     if (window.screen.width <= 768) {
       setIsCartOpen(true);
@@ -34,8 +35,12 @@ const UserTab = () => {
         <DropdownMenuContent>
           <DropdownMenuLabel>My Account</DropdownMenuLabel>
           <DropdownMenuSeparator />
-          <DropdownMenuItem>Profile</DropdownMenuItem>
-          <DropdownMenuItem>Billing</DropdownMenuItem>
+          <DropdownMenuItem>
+            <Link to={'/profile'}>Profile</Link>
+          </DropdownMenuItem>
+          <DropdownMenuItem>
+            <Link to={'/orders'}>Orders</Link>
+          </DropdownMenuItem>
           <DropdownMenuItem onClick={() => logout()}>Log Out</DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>

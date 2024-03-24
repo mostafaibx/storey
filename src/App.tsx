@@ -15,6 +15,8 @@ import ReceipiesPage from './Pages/ReceipiesPage';
 import ProductPage from './Pages/ProductPage';
 import ContactUsPage from './Pages/ContactUsPage';
 import CheckoutPage from './Pages/CheckoutPage';
+import ProfilePage from './Pages/ProfilePage';
+import OrdersPage from './Pages/OrdersPage';
 
 function App() {
   const router = createBrowserRouter([
@@ -63,6 +65,8 @@ function App() {
           children: [
             { path: 'cart', element: <CartPage /> },
             { path: 'checkout', element: <CheckoutPage /> },
+            { path: 'profile', element: <ProfilePage /> },
+            { path: 'orders', element: <OrdersPage /> },
           ],
         },
       ],

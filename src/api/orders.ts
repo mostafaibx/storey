@@ -3,15 +3,12 @@ import CookiesServices from '@/services/CookiesServices';
 import { Order, OrderStatus } from '@/types/types';
 
 export const getOrders = async () => {
-  const response = await fetch(
-    `${import.meta.env.VITE_SERVER_URL}/api/orders`,
-    {
-      headers: {
-        Authorization: `Bearer ${CookiesServices.get('jwt')}`,
-        'Content-Type': 'application/json',
-      },
-    }
-  );
+  const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/api/order`, {
+    headers: {
+      Authorization: `Bearer ${CookiesServices.get('jwt')}`,
+      'Content-Type': 'application/json',
+    },
+  });
 
   if (!response.ok) {
     toast({
@@ -24,17 +21,14 @@ export const getOrders = async () => {
 };
 
 export const createOrderMutationFn = async (order: Order) => {
-  const response = await fetch(
-    `${import.meta.env.VITE_SERVER_URL}/api/orders`,
-    {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${CookiesServices.get('jwt')}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(order),
-    }
-  );
+  const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/api/order`, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${CookiesServices.get('jwt')}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(order),
+  });
 
   if (!response.ok) {
     toast({
@@ -50,38 +44,35 @@ export const updateOrderStatusMutationFn = async (
   status: OrderStatus,
   id: string
 ) => {
-  const response = await fetch(
-    `${import.meta.env.VITE_SERVER_URL}/api/orders/${id}`,
-    {
-      method: 'PUT',
-      headers: {
-        Authorization: `Bearer ${CookiesServices.get('jwt')}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ status }),
-    }
-  );
+  const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/api/order`, {
+    method: 'PUT',
+    headers: {
+      Authorization: `Bearer ${CookiesServices.get('jwt')}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ status, id }),
+  });
   if (!response.ok) {
     toast({
       description: 'Could not update order. Please try again.',
       variant: 'destructive',
     });
   }
+  // clear all items in cart
+
   const data = await response.json();
   return data;
 };
 
 export const deleteOrderMutationFn = async (id: string) => {
-  const response = await fetch(
-    `${import.meta.env.VITE_SERVER_URL}/api/orders/${id}`,
-    {
-      method: 'DELETE',
-      headers: {
-        Authorization: `Bearer ${CookiesServices.get('jwt')}`,
-        'Content-Type': 'application/json',
-      },
-    }
-  );
+  const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/api/order`, {
+    method: 'DELETE',
+    headers: {
+      Authorization: `Bearer ${CookiesServices.get('jwt')}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ id }),
+  });
   if (!response.ok) {
     toast({
       description: 'Could not delete order. Please try again.',

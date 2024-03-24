@@ -13,6 +13,7 @@ import { Button } from '../ui/button';
 import useCart from '@/composables/useCart';
 import { Order, adress } from '@/types/types';
 import { useNavigate } from 'react-router-dom';
+import useOrder from '@/composables/useOrder';
 
 const AddAddressDialoge = ({ openDialog }: { openDialog: boolean }) => {
   const { addresses } = useAddress();
@@ -24,6 +25,7 @@ const AddAddressDialoge = ({ openDialog }: { openDialog: boolean }) => {
 
   const { cart } = useCart();
   const navigate = useNavigate();
+  const { createOrder } = useOrder();
   const submitAddressHandler = () => {
     if (selectedAddress) {
       const order: Order = {
@@ -34,7 +36,7 @@ const AddAddressDialoge = ({ openDialog }: { openDialog: boolean }) => {
         status: 'pending',
         paymentMethod: 'cod',
       };
-      console.log(order);
+      createOrder(order);
       // TODO: Send order to server
       // if res is ok navigate to checkout
       navigate('/checkout');
