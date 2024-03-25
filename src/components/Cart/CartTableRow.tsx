@@ -12,7 +12,7 @@ const CartTableRow = ({ item }: { item: cartItem }) => {
           />
         </TableCell>
         <TableCell>{item.title}</TableCell>
-        <TableCell>1</TableCell>
+        <TableCell>{item.quantity}</TableCell>
         <TableCell className='text-right'>$ {item.price}</TableCell>
       </TableRow>
     </>

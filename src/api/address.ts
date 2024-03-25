@@ -52,14 +52,16 @@ export const getUserAddress = async () => {
 
 export const deleteUserAddress = async (id: string) => {
   try {
-    const res = await fetch(`${import.meta.env.VITE_SERVER_URL}/api/address`, {
-      headers: {
-        Authorization: `Bearer ${CookiesServices.get('jwt')}`,
-        'Content-Type': 'application/json',
-      },
-      method: 'DELETE',
-      body: JSON.stringify(id),
-    });
+    const res = await fetch(
+      `${import.meta.env.VITE_SERVER_URL}/api/address/${id}`,
+      {
+        headers: {
+          Authorization: `Bearer ${CookiesServices.get('jwt')}`,
+          'Content-Type': 'application/json',
+        },
+        method: 'DELETE',
+      }
+    );
     if (!res.ok) {
       throw new Error('Something went wrong. Please try again.');
     }

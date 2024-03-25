@@ -64,14 +64,16 @@ export const updateOrderStatusMutationFn = async (
 };
 
 export const deleteOrderMutationFn = async (id: string) => {
-  const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/api/order`, {
-    method: 'DELETE',
-    headers: {
-      Authorization: `Bearer ${CookiesServices.get('jwt')}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ id }),
-  });
+  const response = await fetch(
+    `${import.meta.env.VITE_SERVER_URL}/api/order/${id}`,
+    {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${CookiesServices.get('jwt')}`,
+        'Content-Type': 'application/json',
+      },
+    }
+  );
   if (!response.ok) {
     toast({
       description: 'Could not delete order. Please try again.',
