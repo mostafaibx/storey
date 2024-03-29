@@ -1,23 +1,27 @@
 import './App.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import Rootlayout from './Pages/Rootlayout';
-import ErrorPage from './Pages/ErrorPage';
-import HomePage from './Pages/HomePage';
-import LoginPage from './Pages/LoginPage';
-import CartPage from './Pages/CartPage';
-import LoggedinPrivateRoute from './Pages/LoggedinPrivateRoute';
-import LoggedoutPrivateRoute from './Pages/LoggedoutPrivateRoute';
-import RegisterPage from './Pages/RegisterPage';
-import AboutUsPage from './Pages/AboutUsPage';
-import StorePage from './Pages/StorePage';
-import ReceipiesPage from './Pages/ReceipiesPage';
-import ProductPage from './Pages/ProductPage';
-import ContactUsPage from './Pages/ContactUsPage';
-import CheckoutPage from './Pages/CheckoutPage';
-import ProfilePage from './Pages/ProfilePage';
-import OrdersPage from './Pages/OrdersPage';
-import OrderSubmitted from './Pages/OrderSubmitted';
+import { lazy, Suspense } from 'react';
+const Rootlayout = lazy(() => import('./Pages/Rootlayout'));
+const ErrorPage = lazy(() => import('./Pages/ErrorPage'));
+const HomePage = lazy(() => import('./Pages/HomePage'));
+const LoginPage = lazy(() => import('./Pages/LoginPage'));
+const CartPage = lazy(() => import('./Pages/CartPage'));
+const LoggedinPrivateRoute = lazy(() => import('./Pages/LoggedinPrivateRoute'));
+const LoggedoutPrivateRoute = lazy(
+  () => import('./Pages/LoggedoutPrivateRoute')
+);
+const RegisterPage = lazy(() => import('./Pages/RegisterPage'));
+const AboutUsPage = lazy(() => import('./Pages/AboutUsPage'));
+const StorePage = lazy(() => import('./Pages/StorePage'));
+const ReceipiesPage = lazy(() => import('./Pages/ReceipiesPage'));
+const ProductPage = lazy(() => import('./Pages/ProductPage'));
+const ContactUsPage = lazy(() => import('./Pages/ContactUsPage'));
+const CheckoutPage = lazy(() => import('./Pages/CheckoutPage'));
+const ProfilePage = lazy(() => import('./Pages/ProfilePage'));
+const OrdersPage = lazy(() => import('./Pages/OrdersPage'));
+const OrderSubmitted = lazy(() => import('./Pages/OrderSubmitted'));
+const RedirectPage = lazy(() => import('./Pages/RedirectPage'));
 
 function App() {
   const router = createBrowserRouter([
@@ -51,6 +55,10 @@ function App() {
           element: <ProductPage />,
         },
         {
+          path: 'connect/:provider/redirect',
+          element: <RedirectPage />,
+        },
+        {
           // routes that cant be accessed after login
           path: '/',
           element: <LoggedinPrivateRoute />,
@@ -77,7 +85,9 @@ function App() {
   const queryClient = new QueryClient();
   return (
     <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
+      <Suspense fallback={<div>Loading...</div>}>
+        <RouterProvider router={router} />
+      </Suspense>
     </QueryClientProvider>
   );
 }

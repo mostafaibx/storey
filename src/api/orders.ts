@@ -2,7 +2,7 @@ import { toast } from '@/components/ui/use-toast';
 import CookiesServices from '@/services/CookiesServices';
 import { Order, OrderStatus } from '@/types/types';
 
-export const getOrders = async () => {
+export const getOrdersQueryFn = async () => {
   const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/api/order`, {
     headers: {
       Authorization: `Bearer ${CookiesServices.get('jwt')}`,

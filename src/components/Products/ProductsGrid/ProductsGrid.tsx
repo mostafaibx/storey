@@ -4,8 +4,8 @@ import useProductsQuery from '@/composables/useProducts';
 import { Product } from '@/types/types';
 
 const ProductsGrid = () => {
-  const { data, isLoading } = useProductsQuery();
-  if (isLoading)
+  const { allProducts, isProductsLoading } = useProductsQuery();
+  if (isProductsLoading)
     return (
       <div className='container mx-auto px-4 py-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 items-center'>
         {[...Array(12)].map((_, index) => (
@@ -23,15 +23,20 @@ const ProductsGrid = () => {
       </div>
     );
 
+  console.log(allProducts);
+
   return (
     <div className='container mx-auto px-4 py-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 items-center'>
-      {!isLoading &&
-        data.data?.map((product: { attributes: Product; id: number }) => (
-          <ProductCard
-            key={product.id}
-            product={product.attributes}
-          />
-        ))}
+      {!isProductsLoading &&
+        allProducts.data?.map(
+          (product: { attributes: Product; id: string }) => (
+            <ProductCard
+              key={product.id}
+              product={product.attributes}
+              id={product.id}
+            />
+          )
+        )}
     </div>
   );
 };

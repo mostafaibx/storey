@@ -6,7 +6,7 @@ const Header = () => {
   const { isLogin } = useAuth();
 
   return (
-    <div className='bg-amber-950 bg-opacity-60 p-4 flex flex-row justify-between items-center fixed w-full z-50 text-white'>
+    <div className='pt-8 px-8 pb-4 mx-10 mb-2 flex flex-row justify-between items-center  border-b-2 border-blue-900'>
       <Link to='/'>
         <p className='text-3xl font-extrabold'>Logo</p>
       </Link>

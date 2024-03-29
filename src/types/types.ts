@@ -1,10 +1,9 @@
-import { Address } from 'cluster';
 import { UseFormReturn } from 'react-hook-form';
 
 export type Product = {
   createdAt: string;
   description: string;
-  pid: string;
+  id: string;
   price: number;
   publishedAt: string;
   rating: number; // TODO: change it into object with number of rates and average rate

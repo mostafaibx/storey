@@ -51,6 +51,12 @@ const LoginForm = () => {
     },
   ];
 
+  const providers = ['github'];
+
+  const loginWithProviderHandler = (provider: string) => {
+    window.location.href = `http://localhost:1337/api/connect/${provider}`;
+  };
+
   return (
     <div className='w-72 px-8 py-4 border-spacing-1 border-2 border-slate-300'>
       <Form {...form}>
@@ -73,6 +79,14 @@ const LoginForm = () => {
           </Link>
         </form>
       </Form>
+      {providers.map((provider) => (
+        <Button
+          variant='outline'
+          onClick={() => loginWithProviderHandler(provider)}
+        >
+          {`Login with ${provider}`}
+        </Button>
+      ))}
     </div>
   );
 };

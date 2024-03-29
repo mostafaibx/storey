@@ -75,3 +75,13 @@ export const signupMutationFn = async (userCredintials: signupCredentials) => {
     });
   }
 };
+
+export const loginWithProvider = async (token: string, provider: string) => {
+  const res = await fetch(
+    `${
+      import.meta.env.VITE_SERVER_URL
+    }/api/auth/${provider}/callback?access_token=${token}`
+  );
+  const data = await res.json();
+  CookiesServices.set('jwt', data.jwt, options);
+};

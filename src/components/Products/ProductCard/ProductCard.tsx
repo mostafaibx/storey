@@ -11,24 +11,36 @@ import {
 import { textSlicer } from '../../../utils/functions';
 import useCart from '@/composables/useCart';
 import { Product, cartItem } from '@/types/types';
+import { useNavigate } from 'react-router-dom';
 
-const ProductCard = ({ product }: { product: Product }) => {
+const ProductCard = ({ product, id }: { product: Product; id: string }) => {
   const { addToCart } = useCart();
+  const navigate = useNavigate();
 
-  const addToCartHandler = () => {
+  const addToCartHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
     const cartItem: cartItem = {
-      id: product.pid,
+      id,
       stock: product.stock,
       title: product.title,
       price: product.price,
       thumbnail: product.thumbnail?.data?.attributes?.url,
       quantity: 1,
     };
+
+    event.stopPropagation();
+
     addToCart(cartItem);
   };
 
+  const openProductHandler = () => {
+    navigate(`/store/${id}`);
+  };
+
   return (
-    <Card className='w-60 h-96'>
+    <Card
+      className='w-60 h-96'
+      onClick={openProductHandler}
+    >
       <CardHeader>
         <img
           className='w-full h-36 rounded-t-xl object-cover'

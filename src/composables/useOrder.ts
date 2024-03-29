@@ -1,7 +1,7 @@
 import {
   createOrderMutationFn,
   deleteOrderMutationFn,
-  getOrders,
+  getOrdersQueryFn,
   updateOrderStatusMutationFn,
 } from '@/api/orders';
 import { Order, OrderStatus } from '@/types/types';
@@ -10,7 +10,7 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 const useOrder = () => {
   const { data: orders, isLoading } = useQuery({
     queryKey: ['order'],
-    queryFn: getOrders,
+    queryFn: getOrdersQueryFn,
   });
 
   const { mutate: createOrder } = useMutation({
