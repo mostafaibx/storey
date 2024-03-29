@@ -42,8 +42,9 @@ export const createOrderMutationFn = async (order: Order) => {
 
 export const updateOrderStatusMutationFn = async (
   status: OrderStatus,
-  id: string
+  id: number
 ) => {
+  console.log(status, id);
   const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/api/order`, {
     method: 'PUT',
     headers: {

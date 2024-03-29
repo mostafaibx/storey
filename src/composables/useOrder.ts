@@ -6,8 +6,11 @@ import {
 } from '@/api/orders';
 import { Order, OrderStatus } from '@/types/types';
 import { useMutation, useQuery } from '@tanstack/react-query';
+import { useNavigate } from 'react-router-dom';
 
-const useOrder = () => {
+const useOrder = (id?: string) => {
+  const navigate = useNavigate();
+
   const { data: orders, isLoading } = useQuery({
     queryKey: ['order'],
     queryFn: getOrdersQueryFn,
@@ -16,16 +19,18 @@ const useOrder = () => {
   const { mutate: createOrder } = useMutation({
     mutationKey: ['order'],
     mutationFn: (order: Order) => createOrderMutationFn(order),
+    onSuccess(data) {
+      navigate(`/checkout/${data.id}`);
+    },
   });
 
   const { mutate: deleteOrder } = useMutation({
-    mutationKey: ['order'],
-    mutationFn: (id: string) => deleteOrderMutationFn(id),
+    mutationKey: ['order', id],
+    mutationFn: () => deleteOrderMutationFn(id),
   });
-
   const { mutate: updateOrderStatus } = useMutation({
-    mutationKey: ['order'],
-    mutationFn: (status: OrderStatus, id: string) =>
+    mutationKey: ['order', id],
+    mutationFn: (status: OrderStatus) =>
       updateOrderStatusMutationFn(status, id),
   });
 

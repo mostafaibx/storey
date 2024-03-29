@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import chip from '@/assets/chip.png';
 import './checkout.css';
 import visa from '@/assets/visa.png';
 import mastercard from '@/assets/mastercard.png';
 import useCart from '@/composables/useCart';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import useOrder from '@/composables/useOrder';
 type CardType = {
   name: string;
   pattern: RegExp;
@@ -21,34 +22,38 @@ const CARD_TYPES: CardType[] = [
 
 const CreditCardForm = () => {
   const navigate = useNavigate();
+  const { clearCart } = useCart();
+  const { id } = useParams();
+  const { updateOrderStatus } = useOrder(id);
+
   const [cardHolderName, setCardHolderName] = useState('');
   const [cardNumber, setCardNumber] = useState('');
   const [cardType, setCardType] = useState<string | null>(null);
   const [expiryDate, setExpiryDate] = useState('');
   const [cvv, setCvv] = useState('');
 
-  const handleCardNumberChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    const value = event.target.value.replace(/\D/g, '');
-    const formattedValue = value.replace(/(.{4})/g, '$1 ');
+  const handleCardNumberChange = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      const value = event.target.value.replace(/\D/g, '');
+      const formattedValue = value.replace(/(.{4})/g, '$1 ');
+      setCardNumber(formattedValue.slice(0, 19));
 
-    setCardNumber(formattedValue.slice(0, 19));
-    const matchedType = CARD_TYPES.find((type) =>
-      type.pattern.test(value.slice(0, 4))
-    );
-    setCardType(matchedType?.name || null);
-    console.log(matchedType);
-  };
+      const matchedType = CARD_TYPES.find((type) =>
+        type.pattern.test(value.slice(0, 4))
+      );
+      setCardType(matchedType?.name || null);
+    },
+    [CARD_TYPES]
+  );
 
-  const handleExpiryDateChange = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    const value = event.target.value.replace(/\D/g, '');
-    const formattedValue = value.replace(/(.{2})/g, '$1/');
-    setExpiryDate(formattedValue.slice(0, 5));
-  };
-
+  const handleExpiryDateChange = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      const value = event.target.value.replace(/\D/g, '');
+      const formattedValue = value.replace(/(.{2})/g, '$1/');
+      setExpiryDate(formattedValue.slice(0, 5));
+    },
+    []
+  );
   const handleCvvChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value.replace(/\D/g, '');
     setCvv(value.slice(0, 3));
@@ -65,14 +70,16 @@ const CreditCardForm = () => {
     // Implement validation logic here
     return cardNumber.length > 0 && expiryDate.length > 0 && cvv.length > 0;
   };
-  const { clearCart } = useCart();
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     if (isFormValid()) {
       console.log('Form submitted:', { cardNumber, expiryDate, cvv });
       clearCart();
-      navigate('/ordersubmitted/132ßß293444343049309');
+      updateOrderStatus('preparing');
+
+      navigate(`/ordersubmitted/${id}`);
     } else {
       console.error('Form validation failed');
     }

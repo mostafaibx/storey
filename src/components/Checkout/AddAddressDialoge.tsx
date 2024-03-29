@@ -24,7 +24,6 @@ const AddAddressDialoge = ({ openDialog }: { openDialog: boolean }) => {
   };
 
   const { cart } = useCart();
-  const navigate = useNavigate();
   const { createOrder } = useOrder();
   const submitAddressHandler = () => {
     if (selectedAddress) {
@@ -37,9 +36,6 @@ const AddAddressDialoge = ({ openDialog }: { openDialog: boolean }) => {
         paymentMethod: 'cod',
       };
       createOrder(order);
-      // TODO: Send order to server
-      // if res is ok navigate to checkout
-      navigate('/checkout');
     }
   };
 

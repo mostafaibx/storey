@@ -4,7 +4,6 @@ import {
   getCartItemsQueryFn,
   updateCartMutationFn,
 } from '@/api/cart';
-import CookiesServices from '@/services/CookiesServices';
 import { cartItem } from '@/types/types';
 import { useMutation, useQuery } from '@tanstack/react-query';
 
@@ -12,7 +11,6 @@ const useCart = () => {
   const { data: cart, isLoading } = useQuery({
     queryKey: ['cart'],
     queryFn: getCartItemsQueryFn,
-    enabled: !!CookiesServices.get('jwt'),
   });
 
   const { mutate: addToCart } = useMutation({

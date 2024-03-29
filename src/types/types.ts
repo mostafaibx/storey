@@ -57,10 +57,10 @@ export type adress = {
 
 export type OrderStatus = 'pending' | 'preparing' | 'on the way' | 'delivered';
 export type Order = {
+  createdAt: string;
   id?: string;
   items: Product[];
   total?: number;
-  date: Date;
   status: OrderStatus;
   address: adress;
   paymentMethod: 'cod' | 'paypal';

@@ -73,7 +73,7 @@ function App() {
           element: <LoggedoutPrivateRoute />,
           children: [
             { path: 'cart', element: <CartPage /> },
-            { path: 'checkout', element: <CheckoutPage /> },
+            { path: 'checkout/:id', element: <CheckoutPage /> },
             { path: 'profile', element: <ProfilePage /> },
             { path: 'orders', element: <OrdersPage /> },
             { path: 'ordersubmitted/:id', element: <OrderSubmitted /> },

@@ -13,6 +13,7 @@ const useProductsQuery = (id: string) => {
     useQuery({
       queryKey: [id],
       queryFn: () => getSelectedProductQueryFn(id),
+      enabled: !!id,
     });
 
   return {
