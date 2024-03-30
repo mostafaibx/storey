@@ -16,8 +16,9 @@ import { Link } from 'react-router-dom';
 
 const UserTab = () => {
   const { logout } = useAuth();
-  const [isCartOpen, setIsCartOpen] = useState(false);
   const { user } = useUser();
+  const [isCartOpen, setIsCartOpen] = useState(false);
+
   const openCartHandler = () => {
     if (window.screen.width <= 768) {
       setIsCartOpen(true);
@@ -46,7 +47,7 @@ const UserTab = () => {
       </DropdownMenu>
       <div className='flex flex-row justify-between items-center'>
         <ShoppingCartIcon
-          className='h-6 w-6'
+          className='h-6 w-6 cursor-pointer'
           onClick={openCartHandler}
         />
       </div>

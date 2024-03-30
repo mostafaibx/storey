@@ -7,7 +7,26 @@ import useAuth from '@/composables/useAuth';
 import { Link } from 'react-router-dom';
 import FormFieldItem from './FormFieldItem';
 
+const providers = ['github'];
+const loginFields = [
+  {
+    form: form,
+    name: 'identifier',
+    label: 'Email',
+    placeholder: 'Joe@doe.com',
+    type: 'email',
+  },
+  {
+    form: form,
+    name: 'password',
+    label: 'Password',
+    placeholder: '**********',
+    type: 'password',
+  },
+];
 const LoginForm = () => {
+  const { login } = useAuth();
+
   const formSchema = z.object({
     identifier: z.string().email(),
     password: z
@@ -28,30 +47,9 @@ const LoginForm = () => {
     },
   });
 
-  const { login } = useAuth();
-
   const onSubmit = (data: z.infer<typeof formSchema>) => {
     login(data);
   };
-
-  const loginFields = [
-    {
-      form: form,
-      name: 'identifier',
-      label: 'Email',
-      placeholder: 'Joe@doe.com',
-      type: 'email',
-    },
-    {
-      form: form,
-      name: 'password',
-      label: 'Password',
-      placeholder: '**********',
-      type: 'password',
-    },
-  ];
-
-  const providers = ['github'];
 
   const loginWithProviderHandler = (provider: string) => {
     window.location.href = `http://localhost:1337/api/connect/${provider}`;

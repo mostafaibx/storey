@@ -8,6 +8,7 @@ import { Dialog } from '@radix-ui/react-dialog';
 const OrdersList = () => {
   const [selectedOrder, setSelectedOrder] = useState({} as Order);
   const { orders } = useOrder();
+
   const openOrderDetailsHandler = (order: Order) => {
     setSelectedOrder(order);
   };

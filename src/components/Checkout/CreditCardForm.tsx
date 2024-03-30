@@ -22,9 +22,9 @@ const CARD_TYPES: CardType[] = [
 
 const CreditCardForm = () => {
   const navigate = useNavigate();
-  const { clearCart } = useCart();
   const { id } = useParams();
   const { updateOrderStatus } = useOrder(id);
+  const { clearCart } = useCart();
 
   const [cardHolderName, setCardHolderName] = useState('');
   const [cardNumber, setCardNumber] = useState('');
@@ -32,28 +32,27 @@ const CreditCardForm = () => {
   const [expiryDate, setExpiryDate] = useState('');
   const [cvv, setCvv] = useState('');
 
-  const handleCardNumberChange = useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      const value = event.target.value.replace(/\D/g, '');
-      const formattedValue = value.replace(/(.{4})/g, '$1 ');
-      setCardNumber(formattedValue.slice(0, 19));
+  const handleCardNumberChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const value = event.target.value.replace(/\D/g, '');
+    const formattedValue = value.replace(/(.{4})/g, '$1 ');
+    setCardNumber(formattedValue.slice(0, 19));
 
-      const matchedType = CARD_TYPES.find((type) =>
-        type.pattern.test(value.slice(0, 4))
-      );
-      setCardType(matchedType?.name || null);
-    },
-    [CARD_TYPES]
-  );
+    const matchedType = CARD_TYPES.find((type) =>
+      type.pattern.test(value.slice(0, 4))
+    );
+    setCardType(matchedType?.name || null);
+  };
 
-  const handleExpiryDateChange = useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      const value = event.target.value.replace(/\D/g, '');
-      const formattedValue = value.replace(/(.{2})/g, '$1/');
-      setExpiryDate(formattedValue.slice(0, 5));
-    },
-    []
-  );
+  const handleExpiryDateChange = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const value = event.target.value.replace(/\D/g, '');
+    const formattedValue = value.replace(/(.{2})/g, '$1/');
+    setExpiryDate(formattedValue.slice(0, 5));
+  };
+
   const handleCvvChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value.replace(/\D/g, '');
     setCvv(value.slice(0, 3));
@@ -67,7 +66,6 @@ const CreditCardForm = () => {
   };
 
   const isFormValid = () => {
-    // Implement validation logic here
     return cardNumber.length > 0 && expiryDate.length > 0 && cvv.length > 0;
   };
 
@@ -78,7 +76,6 @@ const CreditCardForm = () => {
       console.log('Form submitted:', { cardNumber, expiryDate, cvv });
       clearCart();
       updateOrderStatus('preparing');
-
       navigate(`/ordersubmitted/${id}`);
     } else {
       console.error('Form validation failed');

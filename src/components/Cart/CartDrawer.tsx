@@ -19,7 +19,6 @@ type cartDrawerProps = {
 
 const CartDrawer = ({ isOpen, onCloseCart }: cartDrawerProps) => {
   const openCartHandler = () => {
-    //emit event to close cart
     onCloseCart();
   };
 

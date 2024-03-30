@@ -3,6 +3,7 @@ import { Button } from '../ui/button';
 import AddAddressDialoge from '../Checkout/AddAddressDialoge';
 import { cartTotal } from '@/utils/functions';
 import { Dialog, DialogTrigger } from '@radix-ui/react-dialog';
+import { Link } from 'react-router-dom';
 
 const OrderSummary = () => {
   const { cart } = useCart();
@@ -17,7 +18,9 @@ const OrderSummary = () => {
         <DialogTrigger>
           <Button>Checkout</Button>
         </DialogTrigger>
-        <Button variant='outline'>Continue Shopping</Button>
+        <Link to={'/'}>
+          <Button variant='outline'>Continue Shopping</Button>
+        </Link>
         <AddAddressDialoge />
       </Dialog>
     </div>

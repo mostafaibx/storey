@@ -2,10 +2,8 @@ import { useState } from 'react';
 import { Button } from '../ui/button';
 import { adress } from '@/types/types';
 import useAddress from '@/composables/useAddress';
-import { useNavigate } from 'react-router-dom';
 
 const AddressForm = () => {
-  const navigate = useNavigate();
   const [showForm, setShowForm] = useState(false);
   const [selectedCountry, setSelectedCountry] = useState('');
   const { updateAddress } = useAddress();
@@ -19,7 +17,6 @@ const AddressForm = () => {
       city: (event.target as HTMLFormElement)['city'].value,
     };
     updateAddress(address);
-    /*     navigate('/checkout'); */
   };
 
   const handleCountryChange = (event: React.ChangeEvent<HTMLSelectElement>) => {

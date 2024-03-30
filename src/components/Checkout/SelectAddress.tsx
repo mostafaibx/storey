@@ -1,12 +1,11 @@
 import { adress } from '@/types/types';
 
-const SelectAddress = ({
-  address,
-  onAddressChange,
-}: {
+type SelectAddressProps = {
   address: adress[];
   onAddressChange: (selectedAddress: adress) => void;
-}) => {
+};
+
+const SelectAddress = ({ address, onAddressChange }: SelectAddressProps) => {
   const handleAddressChange = (address: adress) => {
     onAddressChange(address);
   };

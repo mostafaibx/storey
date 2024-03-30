@@ -9,7 +9,7 @@ import FormFieldItem from './FormFieldItem';
 import { formField } from '@/types/types';
 
 const RegisterForm = () => {
-  // move this to types when start working on them
+  const { signup } = useAuth();
 
   const registrationFormSchema: z.ZodType = z.object({
     email: z.string().email('Invalid email format'),
@@ -46,8 +46,6 @@ const RegisterForm = () => {
       confirmPassword: '',
     },
   });
-
-  const { signup } = useAuth();
 
   const onSubmit = (data: z.infer<typeof registrationFormSchema>) => {
     signup(data);
