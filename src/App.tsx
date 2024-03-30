@@ -2,6 +2,7 @@ import './App.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { lazy, Suspense } from 'react';
+import LoadingPage from './Pages/LoadingPage';
 const Rootlayout = lazy(() => import('./Pages/Rootlayout'));
 const ErrorPage = lazy(() => import('./Pages/ErrorPage'));
 const HomePage = lazy(() => import('./Pages/HomePage'));
@@ -85,7 +86,7 @@ function App() {
   const queryClient = new QueryClient();
   return (
     <QueryClientProvider client={queryClient}>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<LoadingPage />}>
         <RouterProvider router={router} />
       </Suspense>
     </QueryClientProvider>
