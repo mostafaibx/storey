@@ -11,6 +11,7 @@ const OrdersList = () => {
   const openOrderDetailsHandler = (order: Order) => {
     setSelectedOrder(order);
   };
+
   return (
     <div className='flex flex-col w-screen h-full px-8'>
       <Dialog>

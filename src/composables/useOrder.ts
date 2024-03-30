@@ -6,11 +6,15 @@ import {
 } from '@/api/orders';
 import CookiesServices from '@/services/CookiesServices';
 import { Order, OrderStatus } from '@/types/types';
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import useCart from './useCart';
+import { toast } from '@/components/ui/use-toast';
 
 const useOrder = (id?: string) => {
+  const queryClient = useQueryClient();
+
+  queryClient.invalidateQueries({ queryKey: ['order'] });
   const navigate = useNavigate();
   const { clearCart } = useCart();
 
@@ -32,6 +36,12 @@ const useOrder = (id?: string) => {
   const { mutate: deleteOrder } = useMutation({
     mutationKey: ['order', id],
     mutationFn: () => deleteOrderMutationFn(id || ''),
+    onSuccess: () => {
+      toast({
+        title: 'Order Deleted',
+        description: 'Your order has been deleted successfully',
+      });
+    },
   });
   const { mutate: updateOrderStatus } = useMutation({
     mutationKey: ['order', id],

@@ -1,4 +1,5 @@
 import {
+  DialogClose,
   DialogContent,
   DialogDescription,
   DialogHeader,
@@ -7,8 +8,11 @@ import {
 import { Button } from '../ui/button';
 import { Order } from '@/types/types';
 import OrderStatusBar from './OrderStatusBar';
+import useOrder from '@/composables/useOrder';
 
 const OrderDialoge = ({ order }: { order: Order }) => {
+  const { deleteOrder } = useOrder(order.id);
+
   return (
     <div>
       <DialogContent>
@@ -19,7 +23,14 @@ const OrderDialoge = ({ order }: { order: Order }) => {
             <p>Date: {order.createdAt}</p>
             <p>Status: {order.status}</p>
             <OrderStatusBar orderStatus={order.status} />
-            <Button variant='outline'>Delete Order</Button>
+            <DialogClose>
+              <Button
+                variant='outline'
+                onClick={() => deleteOrder()}
+              >
+                Delete Order
+              </Button>
+            </DialogClose>
           </DialogDescription>
         </DialogHeader>
       </DialogContent>
