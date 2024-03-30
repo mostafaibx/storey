@@ -1,5 +1,4 @@
 import {
-  Dialog,
   DialogContent,
   DialogDescription,
   DialogHeader,
@@ -12,26 +11,24 @@ import { useState } from 'react';
 import { Button } from '../ui/button';
 import useCart from '@/composables/useCart';
 import { Order, adress } from '@/types/types';
-import { useNavigate } from 'react-router-dom';
 import useOrder from '@/composables/useOrder';
 
-const AddAddressDialoge = ({ openDialog }: { openDialog: boolean }) => {
-  const { addresses } = useAddress();
+const AddAddressDialoge = () => {
   const [selectedAddress, setSelectedAddress] = useState<adress | null>(null);
+  const { addresses } = useAddress();
+  const { cart } = useCart();
+  const { createOrder } = useOrder();
 
   const handleAddressChange = (addressId: adress) => {
     setSelectedAddress(addressId);
   };
 
-  const { cart } = useCart();
-  const { createOrder } = useOrder();
   const submitAddressHandler = () => {
     if (selectedAddress) {
       const order: Order = {
         address: selectedAddress,
         items: cart?.items,
         total: cart?.total,
-        date: new Date(),
         status: 'pending',
         paymentMethod: 'cod',
       };
@@ -41,31 +38,29 @@ const AddAddressDialoge = ({ openDialog }: { openDialog: boolean }) => {
 
   return (
     <div>
-      <Dialog open={openDialog}>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>
-              {addresses?.length <= 0
-                ? 'Please Add your Address.'
-                : 'Select your address.'}
-            </DialogTitle>
-            <DialogDescription>
-              We need your address for delivery.
-            </DialogDescription>
-          </DialogHeader>
-          {addresses?.length <= 0 ? (
-            <AddressForm />
-          ) : (
-            <SelectAddress
-              address={addresses}
-              onAddressChange={handleAddressChange}
-            />
-          )}
-          {selectedAddress && (
-            <Button onClick={submitAddressHandler}>Continue</Button>
-          )}
-        </DialogContent>
-      </Dialog>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>
+            {addresses?.length <= 0
+              ? 'Please Add your Address.'
+              : 'Select your address.'}
+          </DialogTitle>
+          <DialogDescription>
+            We need your address for delivery.
+          </DialogDescription>
+        </DialogHeader>
+        {addresses?.length <= 0 ? (
+          <AddressForm />
+        ) : (
+          <SelectAddress
+            address={addresses}
+            onAddressChange={handleAddressChange}
+          />
+        )}
+        {selectedAddress && (
+          <Button onClick={submitAddressHandler}>Continue</Button>
+        )}
+      </DialogContent>
     </div>
   );
 };

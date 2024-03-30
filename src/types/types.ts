@@ -55,9 +55,9 @@ export type adress = {
   country: string;
 };
 
-export type OrderStatus = 'pending' | 'preparing' | 'on the way' | 'delivered';
+export type OrderStatus = 'pending' | 'preparing' | 'delivering' | 'delivered';
 export type Order = {
-  createdAt: string;
+  createdAt?: string;
   id?: string;
   items: Product[];
   total?: number;
