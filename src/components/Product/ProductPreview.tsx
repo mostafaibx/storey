@@ -19,9 +19,9 @@ const ProductPreview = ({ product }: { product: Product }) => {
         </Button>
         <Contents />
       </div>
-      <div className='flex justify-center items-center w-80 h-80  rounded-full pb-16 relative'>
+      <div className='flex justify-center items-center max-w-80 h-80  rounded-full pb-16 relative'>
         <img
-          className='z-50'
+          className='z-50 w-auto h-80'
           src={`${import.meta.env.VITE_SERVER_URL}${
             product?.thumbnail?.data?.attributes?.url
           }`}
