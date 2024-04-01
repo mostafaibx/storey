@@ -12,6 +12,7 @@ import { textSlicer } from '../../../utils/functions';
 import useCart from '@/composables/useCart';
 import { Product, cartItem } from '@/types/types';
 import { useNavigate } from 'react-router-dom';
+import Rating from './Rating';
 
 const ProductCard = ({ product, id }: { product: Product; id: string }) => {
   const { addToCart } = useCart();
@@ -38,25 +39,27 @@ const ProductCard = ({ product, id }: { product: Product; id: string }) => {
 
   return (
     <Card
-      className='w-60 h-96'
+      className='w-60 h-96 cursor-pointer hover:scale-105 hover:shadow-lg transition-all duration-300'
       onClick={openProductHandler}
     >
       <CardHeader>
         <img
-          className='w-full h-36 rounded-t-xl object-cover'
+          className='w-full h-auto rounded-t-xl object-cover'
           src={`${import.meta.env.VITE_SERVER_URL}${
             product?.thumbnail?.data?.attributes?.url
           }`}
         ></img>
+        <Rating rating={product.rating} />
+      </CardHeader>
+      <CardContent className='pt-0'>
         <CardTitle>{textSlicer(product.title, 23)}</CardTitle>
         <CardDescription>{textSlicer(product.description, 45)}</CardDescription>
-      </CardHeader>
-      <CardContent>
-        <p>Price: {product.price}</p>
-        <p>Rating: {product.rating}</p>
       </CardContent>
       <CardFooter className='justify-between'>
-        <Button>BUY NOW</Button>
+        <p>
+          <strong>Price: </strong>
+          {product.price} €
+        </p>
         <Button onClick={addToCartHandler}>TO CART</Button>
       </CardFooter>
     </Card>
