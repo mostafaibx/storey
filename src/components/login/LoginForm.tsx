@@ -8,22 +8,7 @@ import { Link } from 'react-router-dom';
 import FormFieldItem from './FormFieldItem';
 
 const providers = ['github'];
-const loginFields = [
-  {
-    form: form,
-    name: 'identifier',
-    label: 'Email',
-    placeholder: 'Joe@doe.com',
-    type: 'email',
-  },
-  {
-    form: form,
-    name: 'password',
-    label: 'Password',
-    placeholder: '**********',
-    type: 'password',
-  },
-];
+
 const LoginForm = () => {
   const { login } = useAuth();
 
@@ -46,6 +31,22 @@ const LoginForm = () => {
       password: '',
     },
   });
+  const loginFields = [
+    {
+      form: form,
+      name: 'identifier',
+      label: 'Email',
+      placeholder: 'Joe@doe.com',
+      type: 'email',
+    },
+    {
+      form: form,
+      name: 'password',
+      label: 'Password',
+      placeholder: '**********',
+      type: 'password',
+    },
+  ];
 
   const onSubmit = (data: z.infer<typeof formSchema>) => {
     login(data);

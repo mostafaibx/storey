@@ -68,7 +68,6 @@
 
 @layer base {
   body {
-    @apply bg-background text-foreground;
-    background-image: url('./assets/bg-pattern.png');
+    @apply bg-coffee-100 text-foreground;
   }
 }

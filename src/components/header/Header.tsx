@@ -6,11 +6,11 @@ const Header = () => {
   const { isLogin } = useAuth();
 
   return (
-    <div className='pt-8 px-8 pb-4 mx-10 mb-2 flex flex-row justify-between items-center  border-b-2 border-blue-900'>
+    <div className='pt-8 px-8 pb-4 mb-2 flex flex-row justify-between items-center'>
       <Link to='/'>
-        <p className='text-3xl font-extrabold'>Logo</p>
+        <p className='text-2xl font-bold'>Coffeee</p>
       </Link>
-      <div className='md:flex flex-row gap-8 md:text-lg hidden'>
+      <div className='md:flex flex-row gap-8 md:text-lg text-md hidden'>
         <Link to={'/store'}>
           <p>Products</p>
         </Link>

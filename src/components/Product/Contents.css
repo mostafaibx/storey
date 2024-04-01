@@ -1,0 +1,12 @@
+.contents-menue:before {
+  content: '';
+  position: absolute;
+  left: -1rem;
+  width: 2px;
+  height: 100%;
+  background: #000;
+}
+
+.content-item {
+  @apply before:content-["•"] before:text-4xl before:absolute relative before:left-[-1.4rem] before:top-[-0.5rem];
+}

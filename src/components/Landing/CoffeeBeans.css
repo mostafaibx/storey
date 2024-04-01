@@ -1,0 +1,12 @@
+.coffee-bean {
+  animation: coffee-bean 2s ease-in-out forwards;
+}
+
+@keyframes coffee-bean {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}
