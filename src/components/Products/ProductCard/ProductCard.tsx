@@ -43,17 +43,19 @@ const ProductCard = ({ product, id }: { product: Product; id: string }) => {
       onClick={openProductHandler}
     >
       <CardHeader>
-        <img
-          className='w-full h-auto rounded-t-xl object-cover'
-          src={`${import.meta.env.VITE_SERVER_URL}${
-            product?.thumbnail?.data?.attributes?.url
-          }`}
-        ></img>
+        <div className='w-full h-48 flex justify-center items-baseline'>
+          <img
+            className='w-auto max-h-48 rounded-t-xl object-cover'
+            src={`${import.meta.env.VITE_SERVER_URL}${
+              product?.thumbnail?.data?.attributes?.url
+            }`}
+          />
+        </div>
         <Rating rating={product.rating} />
+        <CardTitle>{textSlicer(product.title, 23)}</CardTitle>
       </CardHeader>
       <CardContent className='pt-0'>
-        <CardTitle>{textSlicer(product.title, 23)}</CardTitle>
-        <CardDescription>{textSlicer(product.description, 45)}</CardDescription>
+        <CardDescription>{textSlicer(product.description, 23)}</CardDescription>
       </CardContent>
       <CardFooter className='justify-between'>
         <p>
