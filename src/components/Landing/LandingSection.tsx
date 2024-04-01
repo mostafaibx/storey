@@ -6,7 +6,7 @@ const LandingSection = () => {
     <div className='flex flex-col justify-center items-center h-4/6 md:h-screen relative overflow-hidden'>
       <CoffeeBeans />
       <div>
-        <p className='text-xl md:text-4xl font-extrabold'>SINCE - 2024</p>
+        <p className='text-xl md:text-4xl font-extrabold z-50'>SINCE - 2024</p>
       </div>
       <img
         src={mokapot}

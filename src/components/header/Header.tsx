@@ -28,7 +28,7 @@ const Header = () => {
       {!isLogin() && (
         <div className='flex flex-row gap-2'>
           <Link to='/login'>
-            <div className='bg-slate-100 text-amber-950 px-4 py-1 rounded-full cursor-pointer hover:bg-amber-900 hover:text-slate-100'>
+            <div className='bg-slate-100 text-amber-950 px-4 py-1 rounded-full cursor-pointer hover:bg-coffee-500 hover:text-slate-100'>
               Login
             </div>
           </Link>

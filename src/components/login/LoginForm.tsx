@@ -6,6 +6,8 @@ import { z } from 'zod';
 import useAuth from '@/composables/useAuth';
 import { Link } from 'react-router-dom';
 import FormFieldItem from './FormFieldItem';
+import { GitHubLogoIcon } from '@radix-ui/react-icons';
+import { UserIcon } from '@heroicons/react/24/solid';
 
 const providers = ['github'];
 
@@ -57,11 +59,15 @@ const LoginForm = () => {
   };
 
   return (
-    <div className='w-72 px-8 py-4 border-spacing-1 border-2 border-slate-300'>
+    <div className='flex flex-col justify-center items-center w-80  px-8 py-4 bg-background shadow-lg shadow-coffee-300'>
+      <div className='flex justify-center items-center w-20 h-20 rounded-full bg-coffee-500'>
+        <UserIcon className='w-10 h-10 text-white' />
+      </div>
+      <p>Welcome..</p>
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className='space-y-8'
+          className='space-y-4'
         >
           {loginFields.map((fld) => (
             <FormFieldItem
@@ -69,6 +75,7 @@ const LoginForm = () => {
               fld={fld}
             />
           ))}
+          <p className='text-xs font-thin px-2'>forgot your password?</p>
           <Button type='submit'>Login</Button>
           <Link
             className='text-xs font-thin px-2'
@@ -83,7 +90,7 @@ const LoginForm = () => {
           variant='outline'
           onClick={() => loginWithProviderHandler(provider)}
         >
-          {`Login with ${provider}`}
+          <GitHubLogoIcon className='w-6 h-6' />
         </Button>
       ))}
     </div>
