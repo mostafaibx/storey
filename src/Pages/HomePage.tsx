@@ -1,13 +1,13 @@
+import JoinUs from '@/components/Landing/JoinUs/JoinUs';
 import LandingSection from '@/components/Landing/LandingSection';
-import ProductsGrid from '@/components/Products/ProductsGrid/ProductsGrid';
-import Footer from '@/components/UiHelpers/Footer';
+import RecentProducts from '@/components/Landing/RecentProducts/RecentProducts';
 
 const HomePage = () => {
   return (
     <>
       <LandingSection />
-      <ProductsGrid />
-      <Footer />
+      <RecentProducts />
+      <JoinUs />
     </>
   );
 };
