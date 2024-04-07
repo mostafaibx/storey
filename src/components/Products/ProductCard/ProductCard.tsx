@@ -43,9 +43,9 @@ const ProductCard = ({ product, id }: { product: Product; id: string }) => {
       onClick={openProductHandler}
     >
       <CardHeader>
-        <div className='w-full h-48 flex justify-center items-baseline'>
+        <div className='w-full h-28 md:h-48 flex justify-center items-baseline'>
           <img
-            className='w-auto max-h-48 rounded-t-xl object-cover'
+            className='w-auto max-h-24 md:max-h-48 rounded-t-xl object-cover'
             src={`${import.meta.env.VITE_SERVER_URL}${
               product?.thumbnail?.data?.attributes?.url
             }`}
@@ -58,7 +58,7 @@ const ProductCard = ({ product, id }: { product: Product; id: string }) => {
         <CardDescription>{textSlicer(product.description, 23)}</CardDescription>
       </CardContent>
       <CardFooter className='justify-between'>
-        <p>
+        <p className='text-sm'>
           <strong>Price: </strong>
           {product.price} €
         </p>

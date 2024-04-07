@@ -5,9 +5,8 @@ import { Product } from '@/types/types';
 const RecentProducts = () => {
   const { sortedProducts, isSortedProductsLoading } =
     useProductsQuery('createdAt');
-  console.log(sortedProducts);
   return (
-    <div className='flex flex-col justify-center  items-center relative mx-14'>
+    <div className='md:flex hidden flex-col justify-center items-center relative mx-14 mb-24'>
       <p className='text-4xl font-extrabold mb-16'>Expolre Our New Products</p>
       <div className='flex justify-center gap-4 items-center relative mx-14'>
         {!isSortedProductsLoading &&

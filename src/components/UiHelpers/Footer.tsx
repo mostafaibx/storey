@@ -42,18 +42,26 @@ const Footer = () => {
               <ul className='text-white font-medium'>
                 <li className='mb-4'>
                   <a
-                    href='https://github.com/themesberg/flowbite'
+                    href='https://facebook.com'
                     className='hover:underline '
                   >
-                    Github
+                    Facebook
+                  </a>
+                </li>
+                <li className='mb-4'>
+                  <a
+                    href='https://instagram.com'
+                    className='hover:underline'
+                  >
+                    Instagram
                   </a>
                 </li>
                 <li>
                   <a
-                    href='https://discord.gg/4eeurUVvTy'
+                    href='https://twitter.com'
                     className='hover:underline'
                   >
-                    Discord
+                    Twitter
                   </a>
                 </li>
               </ul>
@@ -117,7 +125,7 @@ const Footer = () => {
             </a>
             <a
               href='#'
-              className='text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5'
+              className='text-coffee-100  hover:text-white ms-5'
             >
               <svg
                 className='w-4 h-4'
@@ -132,7 +140,7 @@ const Footer = () => {
             </a>
             <a
               href='#'
-              className='text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5'
+              className='text-coffee-100  hover:text-white ms-5'
             >
               <svg
                 className='w-4 h-4'
@@ -151,7 +159,7 @@ const Footer = () => {
             </a>
             <a
               href='#'
-              className='text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5'
+              className='text-coffee-100  hover:text-white ms-5'
             >
               <svg
                 className='w-4 h-4'
@@ -170,7 +178,7 @@ const Footer = () => {
             </a>
             <a
               href='#'
-              className='text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5'
+              className='text-coffee-100  hover:text-white ms-5'
             >
               <svg
                 className='w-4 h-4'
