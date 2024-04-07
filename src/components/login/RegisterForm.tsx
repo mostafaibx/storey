@@ -90,7 +90,7 @@ const RegisterForm = () => {
   ];
 
   return (
-    <div className='w-7/12 px-8 py-4 border-spacing-1 border-2 border-slate-300'>
+    <div className='flex flex-col justify-center items-center w-80  px-8 py-4 bg-background shadow-lg shadow-coffee-300'>
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}

@@ -3,7 +3,7 @@ import { Toaster } from '@/components/ui/toaster';
 
 const LoginPage = () => {
   return (
-    <div className='flex md:h-screen justify-center items-center py-28'>
+    <div className='flex h-screen justify-center content-start items-center flex-wrap pt-16 md:pt-32'>
       <LoginForm />
       <Toaster />
     </div>
