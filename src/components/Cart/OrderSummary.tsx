@@ -9,20 +9,33 @@ const OrderSummary = () => {
   const { cart } = useCart();
 
   return (
-    <div className='flex flex-col justify-between px-8 py-6 text-2xl font-semibold border-b-2 mx-8'>
-      <h1>Order Summary</h1>
-      <p>Subtotal: {cart && cartTotal(cart?.items)}</p>
-      <p>Shipping: Free</p>
-      <p>Total: {cart && cartTotal(cart.items)}</p>
+    <div className='flex flex-col justify-start items-center h-full mx-8 my-8 '>
+      <h1 className='text-2xl font-semibold mb-6'>Cart Summary</h1>
+      <div className='w-full text-lg'>
+        <div className='flex justify-between my-2 mx-4'>
+          <p>Subtotal:</p> <p> {cart && cartTotal(cart?.items)}</p>
+        </div>
+        <div className='flex justify-between my-2 mx-4'>
+          <p>Shipping:</p> <p> Free</p>
+        </div>
+        <div className='flex justify-between my-2 mx-4'>
+          <p>Total: </p> <p> {cart && cartTotal(cart.items)}</p>
+        </div>
+      </div>
       <Dialog>
         <DialogTrigger>
-          <Button>Checkout</Button>
+          <Button className='mt-4'>Checkout</Button>
         </DialogTrigger>
-        <Link to={'/'}>
-          <Button variant='outline'>Continue Shopping</Button>
-        </Link>
         <AddAddressDialoge />
       </Dialog>
+      <Link to={'/'}>
+        <Button
+          variant='outline'
+          className=' my-2'
+        >
+          Continue Shopping
+        </Button>
+      </Link>
     </div>
   );
 };
