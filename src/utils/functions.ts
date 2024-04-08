@@ -1,5 +1,4 @@
 import { getAddressFromGoogle } from '@/api/address';
-import { toast } from '@/components/ui/use-toast';
 import { GeolocationResponse, cartItem } from '@/types/types';
 
 /**
@@ -30,33 +29,7 @@ export const cartTotal = (items: cartItem[]) => {
   return total;
 };
 
-/* export const getLocation = () => {
-  if (!navigator.geolocation) {
-    toast({
-      title: 'Error',
-      description: 'Geolocation is not supported by your browser.',
-      variant: 'destructive',
-    });
-    return;
-  }
-  let results;
-  navigator.geolocation.getCurrentPosition(
-    (position) => {
-      const { latitude, longitude } = position.coords;
-      results = getAddressFromGoogle(latitude, longitude);
-    },
-    (error) => {
-      toast({
-        title: 'Error',
-        description: error.message,
-        variant: 'destructive',
-      });
-    }
-  );
-  return results;
-}; */
-
-export const getLocation = () => {
+export const getLocation = (): Promise<GeolocationResponse[]> => {
   return new Promise((resolve, reject) => {
     if (!navigator.geolocation) {
       reject(new Error('Geolocation is not supported by your browser.'));

@@ -1,9 +1,16 @@
 import { useState } from 'react';
 import { Button } from '../ui/button';
-import { adress } from '@/types/types';
+import { GeoLocationAddress, GeolocationResponse, adress } from '@/types/types';
 import useAddress from '@/composables/useAddress';
 import { getAddressValues, getLocation } from '@/utils/functions';
 import SuggestedAddress from './SuggestedAddress';
+
+// Explainaing what happens here!
+//// The AddressForm is hidden by default.
+//// When the user Selects the country the AddressForm is shown with the "showForm" set to true.
+//// If the user chooses the Geolocation option, the suggested addresses are shown with the "suggestedAddress" set to true.
+//// when the user selects one of the suggested addresses, the "selectedAddress" is set to the selected address & the "showForm" is set to false.
+//// The selected address then will be the values of the form.
 
 const AddressForm = ({
   closeAddAddressForm,
@@ -11,9 +18,10 @@ const AddressForm = ({
   closeAddAddressForm: () => void;
 }) => {
   const [showForm, setShowForm] = useState(false);
-  const [selectedCountry, setSelectedCountry] = useState('');
-  const [suggestedAddress, setSuggestedAddress] = useState('');
-  const [selectedAddress, setselectedAddress] = useState('');
+  const [selectedCountry, setSelectedCountry] = useState<string | undefined>();
+  const [suggestedAddress, setSuggestedAddress] =
+    useState<GeolocationResponse[]>();
+  const [selectedAddress, setselectedAddress] = useState<GeoLocationAddress>();
   const { updateAddress } = useAddress();
 
   const onSubmitHandler = (event: React.FormEvent<HTMLFormElement>) => {
@@ -39,12 +47,11 @@ const AddressForm = ({
     setSuggestedAddress(locations);
   };
 
-  const getSelectedAddressHandler = (ad: any) => {
+  const getSelectedAddressHandler = (ad: GeolocationResponse) => {
     const address = getAddressValues(ad);
     setselectedAddress(address);
     setShowForm(true);
   };
-  console.log(selectedAddress);
   return (
     <div>
       <form onSubmit={onSubmitHandler}>

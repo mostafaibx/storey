@@ -89,3 +89,12 @@ export type GeolocationResponse = {
   place_id: string;
   types: string[];
 };
+
+export type GeoLocationAddress = {
+  streetNumber: string | undefined;
+  streetName: string | undefined;
+  locality: string | undefined;
+  plz: string | undefined;
+  country: string | undefined;
+  formattedAddress: string;
+};
