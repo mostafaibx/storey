@@ -72,3 +72,27 @@ export const deleteAddressMutationFn = async (id: string) => {
     });
   }
 };
+
+export const getAddressFromGoogle = async (lat: number, lng: number) => {
+  try {
+    const res = await fetch(
+      `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=AIzaSyC0peVZvyjbG8UGm4xTGp_CPXjh4mGRqPg`
+    );
+    if (!res.ok) {
+      throw new Error('Something went wrong. Please try again.');
+    }
+    const data = await res.json();
+
+    if (data.results.length > 6) {
+      const results = data.results.splice(0, 5);
+      return results;
+    } else {
+      return data.results;
+    }
+  } catch (error) {
+    toast({
+      description: `${error.message}`,
+      variant: 'destructive',
+    });
+  }
+};

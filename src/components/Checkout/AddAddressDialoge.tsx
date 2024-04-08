@@ -15,12 +15,17 @@ import useOrder from '@/composables/useOrder';
 
 const AddAddressDialoge = () => {
   const [selectedAddress, setSelectedAddress] = useState<adress | null>(null);
+  const [newAddress, setNewAddress] = useState<boolean>(false);
   const { addresses } = useAddress();
   const { cart } = useCart();
   const { createOrder } = useOrder();
 
   const handleAddressChange = (addressId: adress) => {
     setSelectedAddress(addressId);
+  };
+
+  const addNewAddressHandler = () => {
+    setNewAddress(true);
   };
 
   const submitAddressHandler = () => {
@@ -49,13 +54,18 @@ const AddAddressDialoge = () => {
             We need your address for delivery.
           </DialogDescription>
         </DialogHeader>
-        {addresses?.length <= 0 ? (
-          <AddressForm />
+        {addresses?.length <= 0 || newAddress ? (
+          <AddressForm closeAddAddressForm={() => setNewAddress(false)} />
         ) : (
-          <SelectAddress
-            address={addresses}
-            onAddressChange={handleAddressChange}
-          />
+          !newAddress && (
+            <>
+              <SelectAddress
+                address={addresses}
+                onAddressChange={handleAddressChange}
+              />
+              <Button onClick={addNewAddressHandler}>Add New Address</Button>
+            </>
+          )
         )}
         {selectedAddress && (
           <Button onClick={submitAddressHandler}>Continue</Button>

@@ -65,3 +65,27 @@ export type Order = {
   address: adress;
   paymentMethod: 'cod' | 'paypal';
 };
+export interface AddressComponent {
+  long_name: string;
+  short_name: string;
+  types: string[];
+}
+
+export type GeolocationResponse = {
+  address_components: AddressComponent[];
+  formatted_address: string;
+  geometry: {
+    bounds: {
+      northeast: { lat: number; lng: number };
+      southwest: { lat: number; lng: number };
+    };
+    location: { lat: number; lng: number };
+    location_type: string;
+    viewport: {
+      northeast: { lat: number; lng: number };
+      southwest: { lat: number; lng: number };
+    };
+  };
+  place_id: string;
+  types: string[];
+};

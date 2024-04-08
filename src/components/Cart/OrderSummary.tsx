@@ -1,7 +1,7 @@
 import useCart from '@/composables/useCart';
 import { Button } from '../ui/button';
 import AddAddressDialoge from '../Checkout/AddAddressDialoge';
-import { cartTotal } from '@/utils/functions';
+import { cartTotal, getLocation } from '@/utils/functions';
 import { Dialog, DialogTrigger } from '@radix-ui/react-dialog';
 import { Link } from 'react-router-dom';
 

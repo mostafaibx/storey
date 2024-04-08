@@ -1,5 +1,6 @@
+import { getAddressFromGoogle } from '@/api/address';
 import { toast } from '@/components/ui/use-toast';
-import { cartItem } from '@/types/types';
+import { GeolocationResponse, cartItem } from '@/types/types';
 
 /**
 + * Slices a given text to a specified length and adds ellipsis if the text is longer than the specified length.
@@ -28,3 +29,79 @@ export const cartTotal = (items: cartItem[]) => {
   });
   return total;
 };
+
+/* export const getLocation = () => {
+  if (!navigator.geolocation) {
+    toast({
+      title: 'Error',
+      description: 'Geolocation is not supported by your browser.',
+      variant: 'destructive',
+    });
+    return;
+  }
+  let results;
+  navigator.geolocation.getCurrentPosition(
+    (position) => {
+      const { latitude, longitude } = position.coords;
+      results = getAddressFromGoogle(latitude, longitude);
+    },
+    (error) => {
+      toast({
+        title: 'Error',
+        description: error.message,
+        variant: 'destructive',
+      });
+    }
+  );
+  return results;
+}; */
+
+export const getLocation = () => {
+  return new Promise((resolve, reject) => {
+    if (!navigator.geolocation) {
+      reject(new Error('Geolocation is not supported by your browser.'));
+      return;
+    }
+
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const { latitude, longitude } = position.coords;
+        const address = getAddressFromGoogle(latitude, longitude);
+        resolve(address);
+      },
+      (error) => {
+        reject(error);
+      }
+    );
+  });
+};
+
+export function getAddressValues(addressObject: GeolocationResponse) {
+  const addressComponents = addressObject.address_components;
+  const formattedAddress = addressObject.formatted_address;
+
+  const streetNumber = addressComponents.find((component) =>
+    component.types.includes('street_number')
+  )?.long_name;
+  const streetName = addressComponents.find((component) =>
+    component.types.includes('route')
+  )?.long_name;
+  const locality = addressComponents.find((component) =>
+    component.types.includes('locality')
+  )?.long_name;
+  const postalCode = addressComponents.find((component) =>
+    component.types.includes('postal_code')
+  )?.long_name;
+  const country = addressComponents.find((component) =>
+    component.types.includes('country')
+  )?.long_name;
+
+  return {
+    streetNumber,
+    streetName,
+    locality,
+    plz: postalCode,
+    country,
+    formattedAddress,
+  };
+}

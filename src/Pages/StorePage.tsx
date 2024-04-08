@@ -1,8 +1,10 @@
 import ProductsGrid from '@/components/Products/ProductsGrid/ProductsGrid';
+import CategoriesBar from '@/components/Products/categoriesBar/CategoriesBar';
 
 const StorePage = () => {
   return (
-    <div className='flex h-screen justify-center items-center'>
+    <div className='flex flex-col justify-center items-center'>
+      <CategoriesBar />
       <ProductsGrid />
     </div>
   );
