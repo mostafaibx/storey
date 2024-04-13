@@ -14,7 +14,7 @@ const OrdersList = () => {
   };
 
   return (
-    <div className='flex flex-col w-screen h-full px-8'>
+    <div className='flex flex-col w-11/12 lg:w-9/12 h-full px-8'>
       <Dialog>
         {orders?.map((order: Order) => (
           <OrderItem

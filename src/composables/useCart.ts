@@ -9,6 +9,8 @@ import CookiesServices from '@/services/CookiesServices';
 import { cartItem } from '@/types/types';
 import { useMutation, useQuery } from '@tanstack/react-query';
 
+// might implement Queue mutation & optimistic updates for offline mode
+
 const useCart = () => {
   const { data: cart, isLoading } = useQuery({
     queryKey: ['cart'],

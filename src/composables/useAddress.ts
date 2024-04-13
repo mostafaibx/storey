@@ -6,6 +6,8 @@ import {
 import { adress } from '@/types/types';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 
+// might implement Queue mutation & optimistic updates for offline mode
+
 const useAddress = () => {
   const QueryClient = useQueryClient();
   const { data: addresses } = useQuery({

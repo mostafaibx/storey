@@ -12,6 +12,7 @@ import { Button } from '../ui/button';
 import useCart from '@/composables/useCart';
 import { Order, adress } from '@/types/types';
 import useOrder from '@/composables/useOrder';
+import { generateOrderNumber } from '@/utils/functions';
 
 const AddAddressDialoge = () => {
   const [selectedAddress, setSelectedAddress] = useState<adress | null>(null);
@@ -29,16 +30,17 @@ const AddAddressDialoge = () => {
   };
 
   const submitAddressHandler = () => {
-    if (selectedAddress) {
-      const order: Order = {
-        address: selectedAddress,
-        items: cart?.items,
-        total: cart?.total,
-        status: 'pending',
-        paymentMethod: 'cod',
-      };
-      createOrder(order);
-    }
+    if (!selectedAddress) return;
+
+    const order: Order = {
+      number: generateOrderNumber(),
+      address: selectedAddress,
+      items: cart?.items,
+      total: cart?.total,
+      status: 'pending',
+      paymentMethod: 'cod',
+    };
+    createOrder(order);
   };
 
   return (
@@ -67,9 +69,13 @@ const AddAddressDialoge = () => {
             </>
           )
         )}
-        {selectedAddress && (
-          <Button onClick={submitAddressHandler}>Continue</Button>
-        )}
+
+        <Button
+          onClick={submitAddressHandler}
+          disabled={!selectedAddress}
+        >
+          Continue
+        </Button>
       </DialogContent>
     </div>
   );

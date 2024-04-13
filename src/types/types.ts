@@ -57,6 +57,7 @@ export type adress = {
 
 export type OrderStatus = 'pending' | 'preparing' | 'delivering' | 'delivered';
 export type Order = {
+  number: string;
   createdAt?: string;
   id?: string;
   items: Product[];

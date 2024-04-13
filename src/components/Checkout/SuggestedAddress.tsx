@@ -7,13 +7,15 @@ const SuggestedAddress = ({
 }) => {
   return (
     <div>
+      <p className='font-bold mt-4'>Suggested Addresses</p>
       <ul>
         {locations.map((ad) => (
           <li
+            className='cursor-pointer my-2'
             key={ad.id}
             onClick={() => selectAddressHandler(ad)}
           >
-            {ad.formatted_address}
+            - {ad.formatted_address}
           </li>
         ))}
       </ul>

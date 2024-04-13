@@ -6,7 +6,9 @@ import LoadingPage from './LoadingPage';
 const ProductPage = () => {
   const { id } = useParams();
 
-  const { selectedProduct, isSelectedProductLoading } = useProductsQuery(id);
+  const { selectedProduct, isSelectedProductLoading } = useProductsQuery({
+    id: id,
+  });
 
   if (isSelectedProductLoading) {
     return <LoadingPage />;

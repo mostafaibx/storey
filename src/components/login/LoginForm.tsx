@@ -87,6 +87,7 @@ const LoginForm = () => {
       </Form>
       {providers.map((provider) => (
         <Button
+          key={provider}
           variant='outline'
           onClick={() => loginWithProviderHandler(provider)}
         >

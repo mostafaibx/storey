@@ -1,6 +1,7 @@
 import useAuth from '@/composables/useAuth';
 import UserTab from './UserTab';
 import { Link } from 'react-router-dom';
+import { memo } from 'react';
 
 const Header = () => {
   const { isLogin } = useAuth();
@@ -38,4 +39,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default memo(Header);

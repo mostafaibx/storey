@@ -78,3 +78,31 @@ export function getAddressValues(addressObject: GeolocationResponse) {
     formattedAddress,
   };
 }
+
+export const formatDateAndTime = (date: string) => {
+  const formatedDate = new Date(date);
+  const options = {
+    year: 'numeric',
+    month: 'numeric',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+    second: 'numeric',
+    hour12: false,
+    timeZone: 'UTC',
+  };
+  return formatedDate.toLocaleString(undefined, options);
+};
+
+export const generateOrderNumber = () => {
+  const characters =
+    'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  let orderNumber = '';
+
+  for (let i = 0; i < 12; i++) {
+    const randomIndex = Math.floor(Math.random() * characters.length);
+    orderNumber += characters[randomIndex];
+  }
+
+  return orderNumber;
+};

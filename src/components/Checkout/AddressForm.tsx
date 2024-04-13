@@ -107,12 +107,14 @@ const AddressForm = ({
         </div>
         <Button type='submit'>Submit</Button>
       </form>
-      <Button
-        variant='outline'
-        onClick={getLocationHandler}
-      >
-        Get Location
-      </Button>
+      {!suggestedAddress && (
+        <Button
+          variant='outline'
+          onClick={getLocationHandler}
+        >
+          Get Location
+        </Button>
+      )}
       {!selectedAddress && (
         <>
           {suggestedAddress && (

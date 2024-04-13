@@ -1,7 +1,7 @@
 import useCart from '@/composables/useCart';
 import { Button } from '../ui/button';
 import AddAddressDialoge from '../Checkout/AddAddressDialoge';
-import { cartTotal, getLocation } from '@/utils/functions';
+import { cartTotal } from '@/utils/functions';
 import { Dialog, DialogTrigger } from '@radix-ui/react-dialog';
 import { Link } from 'react-router-dom';
 
@@ -23,9 +23,7 @@ const OrderSummary = () => {
         </div>
       </div>
       <Dialog>
-        <DialogTrigger>
-          <Button className='mt-4'>Checkout</Button>
-        </DialogTrigger>
+        <DialogTrigger>Checkout</DialogTrigger>
         <AddAddressDialoge />
       </Dialog>
       <Link to={'/'}>

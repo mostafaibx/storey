@@ -28,7 +28,7 @@ const useOrder = (id?: string) => {
     mutationKey: ['order'],
     mutationFn: (order: Order) => createOrderMutationFn(order),
     onSuccess(data) {
-      navigate(`/checkout/${data.id}`);
+      navigate(`/checkout/${data.number}`);
       clearCart();
     },
   });
