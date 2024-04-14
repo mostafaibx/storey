@@ -1,5 +1,7 @@
-import { getUserData } from '@/api/user';
-import { useQuery } from '@tanstack/react-query';
+import { changePasswordMutationFn, getUserData } from '@/api/user';
+import { toast } from '@/components/ui/use-toast';
+import { passwordChange } from '@/types/types';
+import { useMutation, useQuery } from '@tanstack/react-query';
 
 const useUser = () => {
   const {
@@ -10,7 +12,14 @@ const useUser = () => {
     queryKey: ['user'],
     queryFn: getUserData,
   });
-  return { user, isLoading, error };
+
+  const { mutate: changePassword } = useMutation({
+    mutationKey: ['user'],
+    mutationFn: (passwords: passwordChange) =>
+      changePasswordMutationFn(passwords),
+  });
+
+  return { user, isLoading, error, changePassword };
 };
 
 export default useUser;

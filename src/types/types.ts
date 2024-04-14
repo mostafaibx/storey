@@ -99,3 +99,9 @@ export type GeoLocationAddress = {
   country: string | undefined;
   formattedAddress: string;
 };
+
+export type passwordChange = {
+  currentPassword: string;
+  password: string;
+  passwordConfirmation: string;
+};
