@@ -33,7 +33,7 @@ const OrderDialoge = ({ order }: { order: Order }) => {
               </Button>
             </DialogClose>
             {order.status === 'pending' && (
-              <Link to={`/checkout/${order.id}`}>
+              <Link to={`/checkout/${order.number}`}>
                 <Button variant='outline'>Go to Checkout</Button>
               </Link>
             )}

@@ -1,3 +1,4 @@
+import CoffeeRoastSection from '@/components/Landing/CoffeeType/CoffeeRoastSection';
 import CoffeeTypeSection from '@/components/Landing/CoffeeType/CoffeeTypeSection';
 import JoinUs from '@/components/Landing/JoinUs/JoinUs';
 import LandingSection from '@/components/Landing/LandingSection';
@@ -11,6 +12,7 @@ const HomePage = () => {
       <RecentProducts />
       <ReceipiesSection />
       <CoffeeTypeSection />
+      <CoffeeRoastSection />
       <JoinUs />
     </>
   );

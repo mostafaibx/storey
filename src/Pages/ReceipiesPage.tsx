@@ -1,8 +1,9 @@
+import BrewsGrid from '@/components/Recepies/BrewsGrid';
+
 const ReceipiesPage = () => {
   return (
-    <div className='flex h-screen justify-center items-center pt-20'>
-      {' '}
-      Receipies{' '}
+    <div className='flex justify-center items-center'>
+      <BrewsGrid />
     </div>
   );
 };
