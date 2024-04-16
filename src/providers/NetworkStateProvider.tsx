@@ -1,7 +1,7 @@
 import { toast } from '@/components/ui/use-toast';
 import { useEffect, useState } from 'react';
 
-const NetworkStateProvider = ({ children }) => {
+const NetworkStateProvider = ({ children }: { children: React.ReactNode }) => {
   const [isOnline, setIsOnline] = useState(true);
 
   const setOnline = () => {

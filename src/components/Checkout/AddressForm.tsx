@@ -18,10 +18,12 @@ const AddressForm = ({
   closeAddAddressForm: () => void;
 }) => {
   const [showForm, setShowForm] = useState(false);
-  const [selectedCountry, setSelectedCountry] = useState<string | undefined>();
+  const [selectedCountry, setSelectedCountry] = useState<string>('DE');
   const [suggestedAddress, setSuggestedAddress] =
     useState<GeolocationResponse[]>();
-  const [selectedAddress, setselectedAddress] = useState<GeoLocationAddress>();
+  const [selectedAddress, setselectedAddress] = useState<GeoLocationAddress>(
+    {} as GeoLocationAddress
+  );
   const { updateAddress } = useAddress();
 
   const onSubmitHandler = (event: React.FormEvent<HTMLFormElement>) => {

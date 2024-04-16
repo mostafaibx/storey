@@ -1,5 +1,4 @@
 import { changePasswordMutationFn, getUserData } from '@/api/user';
-import { toast } from '@/components/ui/use-toast';
 import { passwordChange } from '@/types/types';
 import { useMutation, useQuery } from '@tanstack/react-query';
 

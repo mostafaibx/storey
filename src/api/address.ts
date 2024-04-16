@@ -17,7 +17,7 @@ export const getUserAddressQueryFn = async () => {
     return data;
   } catch (error) {
     toast({
-      description: `${error.message}`,
+      description: `something went wrong `,
       variant: 'destructive',
     });
   }
@@ -44,7 +44,7 @@ export const updateAddressMutationFn = async (adress: adress) => {
     return data;
   } catch (error) {
     toast({
-      description: `${error.message}`,
+      description: `something went wrong `,
       variant: 'destructive',
     });
   }
@@ -67,7 +67,7 @@ export const deleteAddressMutationFn = async (id: string) => {
     }
   } catch (error) {
     toast({
-      description: `${error.message}`,
+      description: `something went wrong `,
       variant: 'destructive',
     });
   }
@@ -91,7 +91,7 @@ export const getAddressFromGoogle = async (lat: number, lng: number) => {
     }
   } catch (error) {
     toast({
-      description: `${error.message}`,
+      description: `something went wrong `,
       variant: 'destructive',
     });
   }

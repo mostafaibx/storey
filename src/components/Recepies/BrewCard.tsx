@@ -1,10 +1,3 @@
-import moka from '../../assets/mokapot-illustration.png';
-import coffeeIcon from '../../assets/noun-coffee-bean-4052167.svg';
-import waterIcon from '../../assets/noun-water-drop-6673522.svg';
-import grinderIcon from '../../assets/noun-hand-coffee-grinder-1593025.svg';
-import heatIcon from '../../assets/noun-heat-6757079.svg';
-import clockIcon from '../../assets/noun-time-6759824.svg';
-
 type Receipe = {
   name: string;
   image: string;

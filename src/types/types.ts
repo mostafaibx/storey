@@ -92,11 +92,11 @@ export type GeolocationResponse = {
 };
 
 export type GeoLocationAddress = {
-  streetNumber: string | undefined;
-  streetName: string | undefined;
-  locality: string | undefined;
-  plz: string | undefined;
-  country: string | undefined;
+  streetNumber: string;
+  streetName: string;
+  locality: string;
+  plz: string;
+  country: string;
   formattedAddress: string;
 };
 

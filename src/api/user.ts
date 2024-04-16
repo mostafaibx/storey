@@ -17,7 +17,7 @@ export const getUserData = async () => {
     return data;
   } catch (error) {
     toast({
-      description: `${error.message}`,
+      description: `something went wrong `,
       variant: 'destructive',
     });
   }
@@ -44,7 +44,7 @@ export const changePasswordMutationFn = async (passwords: passwordChange) => {
     return data;
   } catch (error) {
     toast({
-      description: `${error.message}`,
+      description: `something went wrong `,
       variant: 'destructive',
     });
   }

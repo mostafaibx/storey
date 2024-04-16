@@ -1,5 +1,9 @@
 import { getAddressFromGoogle } from '@/api/address';
-import { GeolocationResponse, cartItem } from '@/types/types';
+import {
+  GeoLocationAddress,
+  GeolocationResponse,
+  cartItem,
+} from '@/types/types';
 
 /**
 + * Slices a given text to a specified length and adds ellipsis if the text is longer than the specified length.
@@ -49,7 +53,9 @@ export const getLocation = (): Promise<GeolocationResponse[]> => {
   });
 };
 
-export function getAddressValues(addressObject: GeolocationResponse) {
+export function getAddressValues(
+  addressObject: GeolocationResponse
+): GeoLocationAddress {
   const addressComponents = addressObject.address_components;
   const formattedAddress = addressObject.formatted_address;
 
@@ -82,12 +88,12 @@ export function getAddressValues(addressObject: GeolocationResponse) {
 export const formatDateAndTime = (date: string) => {
   const formatedDate = new Date(date);
   const options = {
-    year: 'numeric',
-    month: 'numeric',
-    day: 'numeric',
-    hour: 'numeric',
-    minute: 'numeric',
-    second: 'numeric',
+    year: 'numeric' as const,
+    month: 'numeric' as const,
+    day: 'numeric' as const,
+    hour: 'numeric' as const,
+    minute: 'numeric' as const,
+    second: 'numeric' as const,
     hour12: false,
     timeZone: 'UTC',
   };

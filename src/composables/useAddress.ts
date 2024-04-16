@@ -18,7 +18,7 @@ const useAddress = () => {
     mutationKey: ['address'],
     mutationFn: (adress: adress) => updateAddressMutationFn(adress),
     onSuccess: () => {
-      QueryClient.invalidateQueries('address');
+      QueryClient.invalidateQueries({ queryKey: ['address'] });
     },
   });
   const { mutate: deleteAddress } = useMutation({

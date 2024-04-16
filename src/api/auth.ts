@@ -31,7 +31,7 @@ export const loginMutationFn = async (userCredentials: loginCredentials) => {
     }
   } catch (error) {
     toast({
-      description: 'Login failed: ' + error.message,
+      description: 'Login failed ',
       variant: 'destructive',
     });
   }
@@ -70,7 +70,7 @@ export const signupMutationFn = async (userCredintials: signupCredentials) => {
     }
   } catch (error) {
     toast({
-      description: 'Login failed: ' + error.message,
+      description: 'Login failed',
       variant: 'destructive',
     });
   }

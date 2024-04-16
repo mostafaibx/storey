@@ -1,18 +1,20 @@
+import { GeolocationResponse } from '@/types/types';
+
 const SuggestedAddress = ({
   locations,
   selectAddressHandler,
 }: {
-  locations: any;
-  selectAddressHandler: (ad: any) => void;
+  locations: GeolocationResponse[];
+  selectAddressHandler: (ad: GeolocationResponse) => void;
 }) => {
   return (
     <div>
       <p className='font-bold mt-4'>Suggested Addresses</p>
       <ul>
-        {locations.map((ad) => (
+        {locations.map((ad: GeolocationResponse) => (
           <li
             className='cursor-pointer my-2'
-            key={ad.id}
+            key={ad.place_id}
             onClick={() => selectAddressHandler(ad)}
           >
             - {ad.formatted_address}

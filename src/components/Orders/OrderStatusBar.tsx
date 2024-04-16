@@ -22,7 +22,7 @@ const OrderStatusBar = ({ orderStatus }: { orderStatus: OrderStatus }) => {
 
     return { color, isActive };
   });
-  const orderProgress = steps.indexOf(orderStatus) * 33.33;
+  const orderProgress: number = steps.indexOf(orderStatus) * 33.33;
 
   return (
     <div className='flex flex-row justify-between relative'>
