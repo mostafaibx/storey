@@ -59,21 +59,23 @@ export function getAddressValues(
   const addressComponents = addressObject.address_components;
   const formattedAddress = addressObject.formatted_address;
 
-  const streetNumber = addressComponents.find((component) =>
-    component.types.includes('street_number')
-  )?.long_name;
-  const streetName = addressComponents.find((component) =>
-    component.types.includes('route')
-  )?.long_name;
-  const locality = addressComponents.find((component) =>
-    component.types.includes('locality')
-  )?.long_name;
-  const postalCode = addressComponents.find((component) =>
-    component.types.includes('postal_code')
-  )?.long_name;
-  const country = addressComponents.find((component) =>
-    component.types.includes('country')
-  )?.long_name;
+  const streetNumber =
+    addressComponents.find((component) =>
+      component.types.includes('street_number')
+    )?.long_name || '';
+  const streetName =
+    addressComponents.find((component) => component.types.includes('route'))
+      ?.long_name || '';
+  const locality =
+    addressComponents.find((component) => component.types.includes('locality'))
+      ?.long_name || '';
+  const postalCode =
+    addressComponents.find((component) =>
+      component.types.includes('postal_code')
+    )?.long_name || '';
+  const country =
+    addressComponents.find((component) => component.types.includes('country'))
+      ?.long_name || '';
 
   return {
     streetNumber,
