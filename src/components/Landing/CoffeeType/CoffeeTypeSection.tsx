@@ -1,6 +1,3 @@
-import arabiaca from '../../../assets/arabica-bean.png';
-import robosto from '../../../assets/robosto-bean.png';
-
 const CoffeeTypeSection = () => {
   return (
     <div className='flex flex-col justify-center items-center '>
@@ -8,7 +5,10 @@ const CoffeeTypeSection = () => {
         <div className='flex flex-col justify-between items-center'>
           <p className='text-4xl font-bold'>Arabica</p>
           <img
-            src={arabiaca}
+            src={
+              import.meta.env.VITE_CLOUDINARY_BASE_URL +
+              '/v1713274736/arabica-bean_dqxeop.png'
+            }
             className='w-48 h-auto'
           />
         </div>
@@ -29,7 +29,10 @@ const CoffeeTypeSection = () => {
         <div className='flex flex-col justify-between items-center'>
           <p className='text-4xl font-bold'>Robusta</p>
           <img
-            src={robosto}
+            src={
+              import.meta.env.VITE_CLOUDINARY_BASE_URL +
+              '/v1713274735/robosto-bean_xsnof4.png'
+            }
             className='w-48  h-auto'
           />
         </div>

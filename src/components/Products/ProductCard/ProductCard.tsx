@@ -46,9 +46,7 @@ const ProductCard = ({ product, id }: { product: Product; id: string }) => {
         <div className='w-full h-48 flex justify-center items-baseline'>
           <img
             className='w-auto max-h-48 rounded-t-xl object-cover'
-            src={`${import.meta.env.VITE_SERVER_URL}${
-              product?.thumbnail?.data?.attributes?.url
-            }`}
+            src={product?.thumbnail?.data?.attributes?.url}
           />
         </div>
         <Rating rating={product.rating} />

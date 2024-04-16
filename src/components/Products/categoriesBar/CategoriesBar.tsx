@@ -13,7 +13,7 @@ const CategoriesBar = () => {
     'Coffe Makers',
   ];
   return (
-    <div className='flex gap-4 overflow-x-scroll w-full mx-4 my-12 cat-bar'>
+    <div className='flex gap-4 overflow-x-scroll w-full px-8 my-12 cat-bar'>
       {categories.map((category) => (
         <div
           key={category}

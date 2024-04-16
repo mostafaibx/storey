@@ -9,7 +9,7 @@ const CartDrawerElement = ({ item }: { item: cartItem }) => {
       <div className='flex justify-between px-6'>
         <div className='flex items-center'>
           <img
-            src={`${import.meta.env.VITE_SERVER_URL}${item.thumbnail}`}
+            src={item.thumbnail}
             className='px-2 w-16 h-auto bg-cover'
           />
           <p>{item.title}</p>

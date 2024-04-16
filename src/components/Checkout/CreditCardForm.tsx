@@ -1,8 +1,5 @@
-import { useCallback, useMemo, useState } from 'react';
-import chip from '@/assets/chip.png';
+import { useState } from 'react';
 import './checkout.css';
-import visa from '@/assets/visa.png';
-import mastercard from '@/assets/mastercard.png';
 import useCart from '@/composables/useCart';
 import { useNavigate, useParams } from 'react-router-dom';
 import useOrder from '@/composables/useOrder';
@@ -82,17 +79,28 @@ const CreditCardForm = () => {
     }
   };
 
+  console.log(import.meta.env.VITE_CLOUDINARY_BASE_URL);
+
   return (
     <div className='container flex mx-auto px-4 py-8'>
       <div className='w-1/2 flex justify-center items-center'>
         <div className='credit-card-div'>
           <img
-            src={chip}
+            src={
+              import.meta.env.VITE_CLOUDINARY_BASE_URL +
+              'v1713274741/chip_mdewtj.png'
+            }
             alt='chip'
             className='w-8 lg:w-10 h-auto ml-8 mt-20'
           />
           <img
-            src={cardType === 'Mastercard' ? mastercard : visa}
+            src={
+              cardType === 'Mastercard'
+                ? import.meta.env.VITE_CLOUDINARY_BASE_URL +
+                  'v1713274730/mastercard_ixeq7h.png'
+                : import.meta.env.VITE_CLOUDINARY_BASE_URL +
+                  '/v1713274736/visa_est3eb.png'
+            }
             alt='card type'
             className='w-20 h-auto ml-12 '
           />

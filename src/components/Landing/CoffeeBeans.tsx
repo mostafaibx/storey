@@ -1,6 +1,10 @@
-import bean1 from '../../assets/coffeebeans/bean1.png';
-import bean2 from '../../assets/coffeebeans/bean2.png';
-import bean3 from '../../assets/coffeebeans/bean3.png';
+const bean1 =
+  import.meta.env.VITE_CLOUDINARY_BASE_URL + '/v1713277469/bean1_e9rwuf.png';
+const bean2 =
+  import.meta.env.VITE_CLOUDINARY_BASE_URL + '/v1713277472/bean2_yhtgab.png';
+const bean3 =
+  import.meta.env.VITE_CLOUDINARY_BASE_URL + '/v1713277469/bean3_fi4wtq.png';
+
 import './CoffeeBeans.css';
 
 const CoffeeBeans = () => {

@@ -7,7 +7,7 @@ const CartItem = ({ item }: { item: cartItem }) => {
       <div className='flex w-auto h-20'>
         <div className='w-20 h-20 flex items-center justify-center'>
           <img
-            src={`${import.meta.env.VITE_SERVER_URL}${item.thumbnail}`}
+            src={item.thumbnail}
             alt={item.title}
             className='w-auto max-h-20 bg-contain bg-center'
           />

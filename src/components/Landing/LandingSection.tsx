@@ -1,4 +1,3 @@
-import mokapot from '../../assets/moka-pot.png';
 import CoffeeBeans from './CoffeeBeans';
 
 const LandingSection = () => {
@@ -9,7 +8,10 @@ const LandingSection = () => {
         <p className='text-xl md:text-4xl font-extrabold z-50'>SINCE - 2024</p>
       </div>
       <img
-        src={mokapot}
+        src={
+          import.meta.env.VITE_CLOUDINARY_BASE_URL +
+          '/v1713274731/moka-pot_cdrco5.png'
+        }
         className='w-8/12 md:w-4/12  h-auto'
       />
     </div>
