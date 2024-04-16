@@ -1,7 +1,7 @@
 import useAuth from '@/composables/useAuth';
 import UserTab from './UserTab';
 import { Link } from 'react-router-dom';
-import { memo } from 'react';
+import logo from '@/assets/logo.png';
 
 const Header = () => {
   const { isLogin } = useAuth();
@@ -9,7 +9,14 @@ const Header = () => {
   return (
     <div className='pt-8 px-8 pb-4 mb-2 flex flex-row justify-between items-center'>
       <Link to='/'>
-        <p className='text-2xl font-bold'>Coffeee</p>
+        <div className='flex'>
+          <img
+            src={logo}
+            alt='logo'
+            className='w-8 h-8'
+          />
+          <p className='text-2xl font-bold'>Coffeee</p>
+        </div>
       </Link>
       <div className='md:flex flex-row gap-8 md:text-lg text-md hidden'>
         <Link to={'/store'}>
@@ -39,4 +46,4 @@ const Header = () => {
   );
 };
 
-export default memo(Header);
+export default Header;

@@ -3,7 +3,7 @@ import BrewCard from './BrewCard';
 const receipiesData = [
   {
     name: 'MokaPot',
-    image: 'moka',
+    image: '/v1713274731/mokapot-illustration_j7qoha.png',
     coffee: '1 gm',
     water: '16 ml',
     grind: 'Medium-Fine',
