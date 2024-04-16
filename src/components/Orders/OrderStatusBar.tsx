@@ -22,8 +22,8 @@ const OrderStatusBar = ({ orderStatus }: { orderStatus: OrderStatus }) => {
 
     return { color, isActive };
   });
-  const orderProgress: number = steps.indexOf(orderStatus) * 33.33;
-
+  /*   const orderProgress: number = steps.indexOf(orderStatus) * 33.33;
+   */
   return (
     <div className='flex flex-row justify-between relative'>
       {progressPoints.map((point, index) => (
@@ -34,14 +34,6 @@ const OrderStatusBar = ({ orderStatus }: { orderStatus: OrderStatus }) => {
           }-500 ${point.isActive ? 'bg-yellow-600' : ''}`}
         />
       ))}
-      <span
-        style={{ width: `${orderProgress}%` }}
-        className={` h-4 bg-green-500 rounded-full animate-pulse absolute z-0`}
-        aria-valuenow={orderProgress}
-        aria-valuemin='0'
-        aria-valuemax='100'
-        role='progressbar'
-      />
     </div>
   );
 };

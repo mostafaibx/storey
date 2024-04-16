@@ -22,7 +22,6 @@ const OrderDialoge = ({ order }: { order: Order }) => {
             <p className='col-span-2'>Order number: {order.id}</p>
             <p>Date: {order.createdAt}</p>
             <p>Status: {order.status}</p>
-            <OrderStatusBar orderStatus={order.status} />
             <DialogClose disabled={order.status !== 'pending'}>
               <Button
                 disabled={order.status !== 'pending'}
