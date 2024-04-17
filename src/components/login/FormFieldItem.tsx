@@ -19,6 +19,7 @@ const FormFieldItem: React.FC<{ fld: formField }> = ({ fld }) => {
           <FormControl>
             <Input
               placeholder={fld.placeholder}
+              type={fld.type}
               {...field}
             />
           </FormControl>
