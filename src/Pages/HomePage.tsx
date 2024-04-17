@@ -4,8 +4,10 @@ import JoinUs from '@/components/Landing/JoinUs/JoinUs';
 import LandingSection from '@/components/Landing/LandingSection';
 import RecentProducts from '@/components/Landing/RecentProducts/RecentProducts';
 import ReceipiesSection from '@/components/Landing/RecepiesSection/ReceipiesSection';
+import useUser from '@/composables/useUser';
 
 const HomePage = () => {
+  const { user } = useUser();
   return (
     <>
       <LandingSection />
@@ -13,7 +15,7 @@ const HomePage = () => {
       <ReceipiesSection />
       <CoffeeTypeSection />
       <CoffeeRoastSection />
-      <JoinUs />
+      {user && <JoinUs />}
     </>
   );
 };

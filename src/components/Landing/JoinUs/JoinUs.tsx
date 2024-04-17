@@ -1,4 +1,5 @@
 import { Button } from '@/components/ui/button';
+import { Link } from 'react-router-dom';
 
 const JoinUs = () => {
   return (
@@ -11,7 +12,7 @@ const JoinUs = () => {
         variant='outline'
         className='w-24 self-end'
       >
-        Signup
+        <Link to={'/register'}>Signup</Link>
       </Button>
     </div>
   );
