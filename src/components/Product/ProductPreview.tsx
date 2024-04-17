@@ -22,9 +22,7 @@ const ProductPreview = ({ product }: { product: Product }) => {
       <div className='flex justify-center items-center max-w-80 h-80  rounded-full pb-16 relative'>
         <img
           className='z-50 w-auto h-80'
-          src={`${import.meta.env.VITE_SERVER_URL}${
-            product?.thumbnail?.data?.attributes?.url
-          }`}
+          src={product?.thumbnail?.data?.attributes?.url}
           alt={product.title}
         />
         <div className='w-72 h-72 bg-gradient-to-t from-coffee-200 to-coffee-100 rounded-full absolute z-0 top-4 shadow-lg shadow-coffee-300 -inset '></div>
