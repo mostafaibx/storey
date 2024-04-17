@@ -7,7 +7,6 @@ import {
 } from '@/components/ui/dialog';
 import { Button } from '../ui/button';
 import { Order } from '@/types/types';
-import OrderStatusBar from './OrderStatusBar';
 import useOrder from '@/composables/useOrder';
 import { Link } from 'react-router-dom';
 
