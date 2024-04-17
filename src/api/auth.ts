@@ -26,7 +26,6 @@ export const loginMutationFn = async (userCredentials: loginCredentials) => {
       toast({
         description: 'Login successful.',
       });
-      window.location.reload();
       return data;
     }
   } catch (error) {
@@ -65,7 +64,6 @@ export const signupMutationFn = async (userCredintials: signupCredentials) => {
       toast({
         description: 'Signup successful.',
       });
-      window.location.reload();
       return data;
     }
   } catch (error) {
