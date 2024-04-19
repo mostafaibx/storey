@@ -1,6 +1,7 @@
 import { toast } from '@/components/ui/use-toast';
 import CookiesServices from '@/services/CookiesServices';
 import { cartItem } from '@/types/types';
+import { cartFetchHandler } from '@/utils/apiHelpers';
 
 const baseUrl = `${import.meta.env.VITE_SERVER_URL}/api/cart`;
 
