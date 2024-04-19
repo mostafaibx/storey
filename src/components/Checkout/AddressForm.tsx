@@ -21,9 +21,7 @@ const AddressForm = ({
   const [selectedCountry, setSelectedCountry] = useState<string>('DE');
   const [suggestedAddress, setSuggestedAddress] =
     useState<GeolocationResponse[]>();
-  const [selectedAddress, setselectedAddress] = useState<GeoLocationAddress>(
-    {} as GeoLocationAddress
-  );
+  const [selectedAddress, setselectedAddress] = useState<GeoLocationAddress>();
   const { updateAddress } = useAddress();
 
   const onSubmitHandler = (event: React.FormEvent<HTMLFormElement>) => {
