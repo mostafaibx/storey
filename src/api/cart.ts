@@ -2,65 +2,35 @@ import { toast } from '@/components/ui/use-toast';
 import CookiesServices from '@/services/CookiesServices';
 import { cartItem } from '@/types/types';
 
+const baseUrl = `${import.meta.env.VITE_SERVER_URL}/api/cart`;
+
 export const getCartItemsQueryFn = async () => {
-  const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/api/cart`, {
-    headers: {
-      Authorization: `Bearer ${CookiesServices.get('jwt')}`,
-    },
-  });
-  if (!response.ok) {
-    toast({
-      description: 'Something went wrong. Please try again.',
-      variant: 'destructive',
-    });
+  try {
+    const data = await cartFetchHandler(baseUrl);
+
+    return data;
+  } catch (error) {
+    if (error instanceof Error) {
+      toast({
+        description: error.message,
+        variant: 'destructive',
+      });
+    } else {
+      toast({
+        description: 'An unknown error occurred',
+        variant: 'destructive',
+      });
+    }
   }
-  const data = await response.json();
-  return data;
 };
 
 export const updateCartMutationFn = async (cartItem: cartItem) => {
-  const res = await fetch(`${import.meta.env.VITE_SERVER_URL}/api/cart`, {
-    headers: {
-      Authorization: `Bearer ${CookiesServices.get('jwt')}`,
-      'Content-Type': 'application/json',
-    },
-    method: 'POST',
-    body: JSON.stringify(cartItem),
-  });
-  if (!res.ok) {
-    toast({
-      description: 'Something went wrong. Please try again.',
-      variant: 'destructive',
-    });
-  }
-  const data = await res.json();
-  if (data.error.status === 401) {
-    toast({
-      description: 'Please Login to be able to add items to cart',
-      variant: 'destructive',
-    });
-  }
+  const data = await cartFetchHandler(baseUrl, 'POST', cartItem);
   return data;
 };
 
 export const deleteCartItemsMutationFn = async (id: string) => {
-  const response = await fetch(
-    `${import.meta.env.VITE_SERVER_URL}/api/cart/${id}`,
-    {
-      method: 'DELETE',
-      headers: {
-        Authorization: `Bearer ${CookiesServices.get('jwt')}`,
-        'Content-Type': 'application/json',
-      },
-    }
-  );
-  if (!response.ok) {
-    toast({
-      description: 'Could not delete item. Please try again.',
-      variant: 'destructive',
-    });
-  }
-  const data = await response.json();
+  const data = await cartFetchHandler(`${baseUrl}/${id}`, 'DELETE');
   return data;
 };
 

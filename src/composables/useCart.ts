@@ -27,6 +27,19 @@ const useCart = () => {
         description: 'Item added to cart successfully',
       });
     },
+    onError: (error) => {
+      if (error instanceof Error) {
+        toast({
+          description: error.message,
+          variant: 'destructive',
+        });
+      } else {
+        toast({
+          description: 'An unknown error occurred',
+          variant: 'destructive',
+        });
+      }
+    },
   });
   const { mutate: removeFromCart } = useMutation({
     mutationKey: ['cart'],
@@ -37,10 +50,37 @@ const useCart = () => {
         description: 'Item removed from cart successfully',
       });
     },
+    onError: (error) => {
+      if (error instanceof Error) {
+        toast({
+          description: error.message,
+          variant: 'destructive',
+        });
+      } else {
+        toast({
+          description: 'An unknown error occurred',
+          variant: 'destructive',
+        });
+      }
+    },
   });
   const { mutate: clearCart } = useMutation({
     mutationKey: ['cart'],
     mutationFn: () => clearCartMutationFn(),
+    onError: (error) => {
+      if (error instanceof Error) {
+        toast({
+          description: error.message,
+          variant: 'destructive',
+        });
+      } else {
+        toast({
+          description: 'An unknown error occurred',
+          variant: 'destructive',
+        });
+      }
+      return;
+    },
   });
 
   return { addToCart, cart, removeFromCart, isLoading, clearCart };
