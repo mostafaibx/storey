@@ -1,62 +1,74 @@
-import { options } from '@/utils/auth';
+import { authFetchHandler, options } from '@/utils/auth';
 import { toast } from '@/components/ui/use-toast';
 import CookiesServices from '@/services/CookiesServices';
 import { loginCredentials, signupCredentials } from '@/types/types';
 
-// need to handle errors better
-
 export const loginMutationFn = async (userCredentials: loginCredentials) => {
   try {
-    const response = await fetch(
+    const data = await authFetchHandler(
       `${import.meta.env.VITE_SERVER_URL}/api/auth/local`,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(userCredentials),
-      }
+      'POST',
+      userCredentials
     );
-    const data = await response.json();
-    if (!response.ok) {
-      const error = data.error;
-      throw new Error(error.message);
-    } else {
+    if (data) {
       CookiesServices.set('jwt', data.jwt, options);
       toast({
         description: 'Login successful.',
       });
-      return data;
     }
   } catch (error) {
-    toast({
-      description: 'Login failed ',
-      variant: 'destructive',
-    });
+    if (error instanceof Error) {
+      toast({
+        description: 'Login failed: ' + error.message,
+        variant: 'destructive',
+      });
+    } else {
+      toast({
+        description: 'Login failed: An unknown error occurred',
+        variant: 'destructive',
+      });
+    }
   }
 };
 
 export const signupMutationFn = async (userCredintials: signupCredentials) => {
   try {
-    const response = await fetch(
-      `${import.meta.env.VITE_SERVER_URL}/api/auth/local/register `,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(userCredintials),
-      }
+    const data = await authFetchHandler(
+      `${import.meta.env.VITE_SERVER_URL}/api/auth/local/register`,
+      'POST',
+      userCredintials
     );
 
-    if (!response.ok) {
+    if (data) {
+      CookiesServices.set('jwt', data.jwt, options);
       toast({
-        description: 'Signup failed.',
+        description: 'Signup successful.',
+      });
+    }
+  } catch (error) {
+    if (error instanceof Error) {
+      toast({
+        description: 'Signup failed: ' + error.message,
+        variant: 'destructive',
+      });
+    } else {
+      toast({
+        description: 'Signup failed: An unknown error occurred',
         variant: 'destructive',
       });
     }
-    const data = await response.json();
-    if (!response.ok) {
+  }
+};
+
+export const loginWithProvider = async (token: string, provider: string) => {
+  try {
+    const res = await fetch(
+      `${
+        import.meta.env.VITE_SERVER_URL
+      }/api/auth/${provider}/callback?access_token=${token}`
+    );
+    const data = await res.json();
+    if (!res.ok) {
       const error = data.error;
       throw new Error(error.message);
     } else {
@@ -64,22 +76,18 @@ export const signupMutationFn = async (userCredintials: signupCredentials) => {
       toast({
         description: 'Signup successful.',
       });
-      return data;
     }
   } catch (error) {
-    toast({
-      description: 'Login failed',
-      variant: 'destructive',
-    });
+    if (error instanceof Error) {
+      toast({
+        description: 'Login failed: ' + error.message,
+        variant: 'destructive',
+      });
+    } else {
+      toast({
+        description: 'Login failed: An unknown error occurred',
+        variant: 'destructive',
+      });
+    }
   }
-};
-
-export const loginWithProvider = async (token: string, provider: string) => {
-  const res = await fetch(
-    `${
-      import.meta.env.VITE_SERVER_URL
-    }/api/auth/${provider}/callback?access_token=${token}`
-  );
-  const data = await res.json();
-  CookiesServices.set('jwt', data.jwt, options);
 };

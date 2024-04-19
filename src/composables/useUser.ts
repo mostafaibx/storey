@@ -1,8 +1,10 @@
 import { changePasswordMutationFn, getUserData } from '@/api/user';
 import { passwordChange } from '@/types/types';
 import { useMutation, useQuery } from '@tanstack/react-query';
+import useAuth from './useAuth';
 
 const useUser = () => {
+  const { isLogin } = useAuth();
   const {
     data: user,
     isLoading,
@@ -10,6 +12,7 @@ const useUser = () => {
   } = useQuery({
     queryKey: ['user'],
     queryFn: getUserData,
+    enabled: !isLogin,
   });
 
   const { mutate: changePassword } = useMutation({
