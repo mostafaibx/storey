@@ -1,4 +1,5 @@
 import { loginMutationFn, signupMutationFn } from '@/api/auth';
+import { toast } from '@/components/ui/use-toast';
 import CookiesServices from '@/services/CookiesServices';
 import { loginCredentials, signupCredentials } from '@/types/types';
 import { useMutation } from '@tanstack/react-query';
@@ -13,6 +14,19 @@ const useAuth = () => {
     onSuccess: () => {
       navigate('/');
     },
+    onError: (error) => {
+      if (error instanceof Error) {
+        toast({
+          description: 'Login failed: ' + error.message,
+          variant: 'destructive',
+        });
+      } else {
+        toast({
+          description: 'Login failed: An unknown error occurred',
+          variant: 'destructive',
+        });
+      }
+    },
   });
   const { mutate: signup } = useMutation({
     mutationKey: ['auth'],
@@ -20,6 +34,19 @@ const useAuth = () => {
       signupMutationFn(userCredintials),
     onSuccess: () => {
       navigate('/');
+    },
+    onError: (error) => {
+      if (error instanceof Error) {
+        toast({
+          description: 'Signup failed: ' + error.message,
+          variant: 'destructive',
+        });
+      } else {
+        toast({
+          description: 'Signup failed: An unknown error occurred',
+          variant: 'destructive',
+        });
+      }
     },
   });
 
