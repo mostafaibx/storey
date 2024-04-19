@@ -12,7 +12,7 @@ const useUser = () => {
   } = useQuery({
     queryKey: ['user'],
     queryFn: getUserData,
-    enabled: !isLogin,
+    enabled: !!isLogin(),
   });
 
   const { mutate: changePassword } = useMutation({
