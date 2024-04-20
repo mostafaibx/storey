@@ -41,7 +41,7 @@ export const addressFetchHandler = async (
  * @return {Promise<any>} - A promise that resolves to the fetched data, parsed as JSON.
  * @throws {Error} - If the response is not ok, throws an error with the error message from the response.
  */
-export const cartFetchHandler = async (
+export const fetchHandler = async (
   url: string,
   method?: string,
   body?: object

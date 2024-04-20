@@ -1,42 +1,15 @@
-import { toast } from '@/components/ui/use-toast';
-import CookiesServices from '@/services/CookiesServices';
 import { Order, OrderStatus } from '@/types/types';
+import { fetchHandler } from '@/utils/apiHelpers';
+
+const baseUrl = `${import.meta.env.VITE_SERVER_URL}/api/order`;
 
 export const getOrdersQueryFn = async () => {
-  const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/api/order`, {
-    headers: {
-      Authorization: `Bearer ${CookiesServices.get('jwt')}`,
-      'Content-Type': 'application/json',
-    },
-  });
-
-  if (!response.ok) {
-    toast({
-      description: 'Could not get orders. Please try again.',
-      variant: 'destructive',
-    });
-  }
-  const data = await response.json();
+  const data = await fetchHandler(baseUrl);
   return data;
 };
 
 export const createOrderMutationFn = async (order: Order) => {
-  const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/api/order`, {
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${CookiesServices.get('jwt')}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(order),
-  });
-
-  if (!response.ok) {
-    toast({
-      description: 'Could not create order. Please try again.',
-      variant: 'destructive',
-    });
-  }
-  const data = await response.json();
+  const data = await fetchHandler(baseUrl, 'POST', order);
   return data;
 };
 
@@ -44,43 +17,11 @@ export const updateOrderStatusMutationFn = async (
   status: OrderStatus,
   id: string
 ) => {
-  console.log(status, id);
-  const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/api/order`, {
-    method: 'PUT',
-    headers: {
-      Authorization: `Bearer ${CookiesServices.get('jwt')}`,
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ status, id }),
-  });
-  if (!response.ok) {
-    toast({
-      description: 'Could not update order. Please try again.',
-      variant: 'destructive',
-    });
-  }
-
-  const data = await response.json();
+  const data = await fetchHandler(baseUrl, 'PUT', { status, id });
   return data;
 };
 
 export const deleteOrderMutationFn = async (id: string) => {
-  const response = await fetch(
-    `${import.meta.env.VITE_SERVER_URL}/api/order/${id}`,
-    {
-      method: 'DELETE',
-      headers: {
-        Authorization: `Bearer ${CookiesServices.get('jwt')}`,
-        'Content-Type': 'application/json',
-      },
-    }
-  );
-  if (!response.ok) {
-    toast({
-      description: 'Could not delete order. Please try again.',
-      variant: 'destructive',
-    });
-  }
-  const data = await response.json();
+  const data = await fetchHandler(`${baseUrl}/${id}`, 'DELETE');
   return data;
 };

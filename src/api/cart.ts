@@ -1,13 +1,13 @@
 import { toast } from '@/components/ui/use-toast';
 import CookiesServices from '@/services/CookiesServices';
 import { cartItem } from '@/types/types';
-import { cartFetchHandler } from '@/utils/apiHelpers';
+import { fetchHandler } from '@/utils/apiHelpers';
 
 const baseUrl = `${import.meta.env.VITE_SERVER_URL}/api/cart`;
 
 export const getCartItemsQueryFn = async () => {
   try {
-    const data = await cartFetchHandler(baseUrl);
+    const data = await fetchHandler(baseUrl);
 
     return data;
   } catch (error) {
@@ -26,29 +26,16 @@ export const getCartItemsQueryFn = async () => {
 };
 
 export const updateCartMutationFn = async (cartItem: cartItem) => {
-  const data = await cartFetchHandler(baseUrl, 'POST', cartItem);
+  const data = await fetchHandler(baseUrl, 'POST', cartItem);
   return data;
 };
 
 export const deleteCartItemsMutationFn = async (id: string) => {
-  const data = await cartFetchHandler(`${baseUrl}/${id}`, 'DELETE');
+  const data = await fetchHandler(`${baseUrl}/${id}`, 'DELETE');
   return data;
 };
 
 export const clearCartMutationFn = async () => {
-  const response = await fetch(`${import.meta.env.VITE_SERVER_URL}/api/cart`, {
-    method: 'DELETE',
-    headers: {
-      Authorization: `Bearer ${CookiesServices.get('jwt')}`,
-      'Content-Type': 'application/json',
-    },
-  });
-  if (!response.ok) {
-    toast({
-      description: 'Could not clear cart. Please try again.',
-      variant: 'destructive',
-    });
-  }
-  const data = await response.json();
+  const data = await fetchHandler(`${baseUrl}`, 'DELETE');
   return data;
 };
