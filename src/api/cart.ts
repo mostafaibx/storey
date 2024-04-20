@@ -1,5 +1,4 @@
 import { toast } from '@/components/ui/use-toast';
-import CookiesServices from '@/services/CookiesServices';
 import { cartItem } from '@/types/types';
 import { fetchHandler } from '@/utils/apiHelpers';
 

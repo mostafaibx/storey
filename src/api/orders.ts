@@ -22,6 +22,7 @@ export const updateOrderStatusMutationFn = async (
 };
 
 export const deleteOrderMutationFn = async (id: string) => {
+  if (!id) return;
   const data = await fetchHandler(`${baseUrl}/${id}`, 'DELETE');
   return data;
 };
