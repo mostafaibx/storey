@@ -1,56 +1,18 @@
-import { toast } from '@/components/ui/use-toast';
+import { fetchHandler } from '@/utils/apiHelpers';
+
+const baseUrl = `${
+  import.meta.env.VITE_SERVER_URL
+}/api/products?populate=thumbnail`;
 
 export const getAllProductsQueryFn = async () => {
-  try {
-    const res = await fetch(
-      `${import.meta.env.VITE_SERVER_URL}/api/products?populate=thumbnail`
-    );
-    if (!res.ok) {
-      throw new Error('Something went wrong. Please try again.');
-    }
-    const data = await res.json();
-    return data;
-  } catch (error) {
-    toast({
-      description: `something went wrong `,
-      variant: 'destructive',
-    });
-  }
+  const data = await fetchHandler(baseUrl);
+  return data;
 };
 export const getSortedProductsQueryFn = async (sort: string) => {
-  try {
-    const res = await fetch(
-      `${
-        import.meta.env.VITE_SERVER_URL
-      }/api/products?populate=thumbnail&sort=${sort}`
-    );
-    if (!res.ok) {
-      throw new Error('Something went wrong. Please try again.');
-    }
-    const data = await res.json();
-    return data;
-  } catch (error) {
-    toast({
-      description: `something went wrong `,
-      variant: 'destructive',
-    });
-  }
+  const data = await fetchHandler(`${baseUrl}&sort=${sort}`);
+  return data;
 };
 export const getSelectedProductQueryFn = async (id: string | undefined) => {
-  if (!id) return;
-  try {
-    const res = await fetch(
-      `${import.meta.env.VITE_SERVER_URL}/api/products/${id}?populate=thumbnail`
-    );
-    if (!res.ok) {
-      throw new Error('Something went wrong. Please try again.');
-    }
-    const data = await res.json();
-    return data;
-  } catch (error) {
-    toast({
-      description: `something went wrong `,
-      variant: 'destructive',
-    });
-  }
+  const data = await fetchHandler(`${import.meta.env.VITE_SERVER_URL}/${id}`);
+  return data;
 };
