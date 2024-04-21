@@ -76,7 +76,7 @@ function App() {
             { path: 'checkout/:id', element: <CheckoutPage /> },
             { path: 'profile', element: <ProfilePage /> },
             { path: 'orders', element: <OrdersPage /> },
-            { path: 'shopping-cart', element: <CartPage /> },
+            { path: 'cart', element: <CartPage /> },
             { path: 'ordersubmitted/:id', element: <OrderSubmitted /> },
           ],
         },
