@@ -9,12 +9,13 @@ const CartTable = () => {
     <div>
       <h1 className=' text-2xl md:text-4xl font-semibold mx-12'>Your Cart</h1>
       <div className='px-4 md:px-0 md:my-16 md:ml-20'>
-        {cart?.items.map((item: cartItem) => (
-          <CartItem
-            key={item.id}
-            item={item}
-          />
-        ))}
+        {cart &&
+          cart.items.map((item: cartItem) => (
+            <CartItem
+              key={item.id}
+              item={item}
+            />
+          ))}
       </div>
     </div>
   );
