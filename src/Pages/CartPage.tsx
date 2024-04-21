@@ -1,11 +1,9 @@
 import CartTable from '@/components/Cart/CartTable';
-import EmptyCart from '@/components/Cart/EmptyCart';
 import OrderSummary from '@/components/Cart/OrderSummary';
-import useCart from '@/composables/useCart';
 
 const CartPage = () => {
-  const { cart } = useCart();
-  if (cart?.items.length === 0) return <EmptyCart />;
+  /*   const { cart } = useCart();
+  if (cart?.items.length === 0) return <EmptyCart />; */
 
   return (
     <div className='flex md:flex-row flex-col h-screen w-screen'>
