@@ -9,7 +9,7 @@ export const getAllProductsQueryFn = async () => {
 };
 export const getSortedProductsQueryFn = async (sort: string) => {
   const data = await fetchUnAuthHandler(
-    `${baseUrl}&sort=${sort}?populate=thumbnail`
+    `${baseUrl}?sort=${sort}&populate=thumbnail`
   );
   return data;
 };
