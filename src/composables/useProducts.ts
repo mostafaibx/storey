@@ -13,14 +13,14 @@ const useProductsQuery = ({ id, sort }: { id?: string; sort?: string }) => {
   });
   const { data: sortedProducts, isLoading: isSortedProductsLoading } = useQuery(
     {
-      queryKey: [sort],
+      queryKey: ['products', sort],
       queryFn: () => getSortedProductsQueryFn(sort || ''),
       enabled: !!sort,
     }
   );
   const { data: selectedProduct, isLoading: isSelectedProductLoading } =
     useQuery({
-      queryKey: [id],
+      queryKey: ['products', id],
       queryFn: () => getSelectedProductQueryFn(id),
       enabled: !!id,
     });

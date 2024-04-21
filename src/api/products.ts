@@ -15,8 +15,6 @@ export const getSortedProductsQueryFn = async (sort: string) => {
 };
 export const getSelectedProductQueryFn = async (id: string | undefined) => {
   if (!id) return;
-  const data = await fetchUnAuthHandler(
-    `${import.meta.env.VITE_SERVER_URL}/${id}`
-  );
+  const data = await fetchUnAuthHandler(`${baseUrl}/${id}`);
   return data;
 };
