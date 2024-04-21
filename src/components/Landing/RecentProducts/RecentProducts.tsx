@@ -6,6 +6,7 @@ const RecentProducts = () => {
   const { sortedProducts, isSortedProductsLoading } = useProductsQuery({
     sort: 'createdAt',
   });
+  console.log(isSortedProductsLoading);
 
   return (
     <div className='md:flex hidden flex-col justify-center items-center relative mx-14 mb-24'>

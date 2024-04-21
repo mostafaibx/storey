@@ -13,6 +13,7 @@ export const getSortedProductsQueryFn = async (sort: string) => {
   return data;
 };
 export const getSelectedProductQueryFn = async (id: string | undefined) => {
+  if (!id) return;
   const data = await fetchHandler(`${import.meta.env.VITE_SERVER_URL}/${id}`);
   return data;
 };
