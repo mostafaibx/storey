@@ -37,7 +37,7 @@ function App() {
           index: true,
           element: <HomePage />,
         },
-        { path: 'test', element: <TestPage /> },
+        { path: '/test', element: <TestPage /> },
         {
           path: 'about-us',
           element: <AboutUsPage />,
