@@ -5,9 +5,10 @@ import { fetchAuthHandler } from '@/utils/apiHelpers';
 const baseUrl = `${import.meta.env.VITE_SERVER_URL}/api/cart`;
 
 export const getCartItemsQueryFn = async () => {
-  try {
+  const data = await fetchAuthHandler(baseUrl);
+  return data;
+  /*   try {
     const data = await fetchAuthHandler(baseUrl);
-
     return data;
   } catch (error) {
     if (error instanceof Error) {
@@ -21,7 +22,7 @@ export const getCartItemsQueryFn = async () => {
         variant: 'destructive',
       });
     }
-  }
+  } */
 };
 
 export const updateCartMutationFn = async (cartItem: cartItem) => {
