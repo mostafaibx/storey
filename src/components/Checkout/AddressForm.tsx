@@ -27,7 +27,7 @@ const AddressForm = ({
   const onSubmitHandler = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const address: adress = {
-      country: selectedCountry || selectedAddress?.country,
+      country: selectedCountry || selectedAddress?.country || 'DE',
       street: (event.target as HTMLFormElement)['street'].value,
       plz: (event.target as HTMLFormElement)['plz'].value,
       city: (event.target as HTMLFormElement)['city'].value,
