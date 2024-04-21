@@ -7,7 +7,10 @@ const Rootlayout = lazy(() => import('./Pages/Rootlayout'));
 const ErrorPage = lazy(() => import('./Pages/ErrorPage'));
 const HomePage = lazy(() => import('./Pages/HomePage'));
 const LoginPage = lazy(() => import('./Pages/LoginPage'));
-const CartPage = lazy(() => import('./Pages/CartPage'));
+/* const CartPage = lazy(() => import('./Pages/CartPage'));
+ */
+import CartPage from './Pages/CartPage';
+
 const LoggedinPrivateRoute = lazy(() => import('./Pages/LoggedinPrivateRoute'));
 const LoggedoutPrivateRoute = lazy(
   () => import('./Pages/LoggedoutPrivateRoute')
