@@ -15,7 +15,7 @@ const ProductPage = () => {
   } else {
     return (
       <div className='flex justify-start items-top relative'>
-        <ProductPreview product={selectedProduct.data.attributes} />
+        <ProductPreview product={selectedProduct?.data?.attributes} />
       </div>
     );
   }
