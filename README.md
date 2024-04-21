@@ -64,6 +64,8 @@ The Front-end is hosted on Vercel, and Back-end is hosted on Render
 
 
 ## Features I am currently working on:
+- Testing:
+  - Adding Unit tests using Vitest.
 - Offline mode:
   - Adding Network provider
   - Implement Queue mutation & optimistic updates for offline mode.
