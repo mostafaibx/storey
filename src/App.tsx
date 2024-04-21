@@ -60,7 +60,7 @@ function App() {
           element: <RedirectPage />,
         },
         {
-          // routes that cant be accessed after login
+          // routes that can't be accessed after login
           path: '/',
           element: <LoggedinPrivateRoute />,
           children: [
@@ -73,10 +73,10 @@ function App() {
           path: '/',
           element: <LoggedoutPrivateRoute />,
           children: [
-            { path: 'cart', element: <CartPage /> },
             { path: 'checkout/:id', element: <CheckoutPage /> },
             { path: 'profile', element: <ProfilePage /> },
             { path: 'orders', element: <OrdersPage /> },
+            { path: 'shopping-cart', element: <CartPage /> },
             { path: 'ordersubmitted/:id', element: <OrderSubmitted /> },
           ],
         },
