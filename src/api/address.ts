@@ -1,13 +1,13 @@
 import { toast } from '@/components/ui/use-toast';
 import { adress } from '@/types/types';
-import { addressFetchHandler } from '@/utils/apiHelpers';
+import { fetchAuthHandler } from '@/utils/apiHelpers';
 
 const baseUrl = import.meta.env.VITE_SERVER_URL;
 const googleMapsApiURL =
   'https://maps.googleapis.com/maps/api/geocode/json?latlng=';
 export const getUserAddressQueryFn = async () => {
   try {
-    const data = await addressFetchHandler(`${baseUrl}/api/address`);
+    const data = await fetchAuthHandler(`${baseUrl}/api/address`);
     return data;
   } catch (error) {
     if (error instanceof Error) {
@@ -25,21 +25,17 @@ export const getUserAddressQueryFn = async () => {
 };
 
 export const updateAddressMutationFn = async (adress: adress) => {
-  const data = await addressFetchHandler(
-    `${baseUrl}/api/address`,
-    'POST',
-    adress
-  );
+  const data = await fetchAuthHandler(`${baseUrl}/api/address`, 'POST', adress);
 
   return data;
 };
 
 export const deleteAddressMutationFn = async (id: string) => {
-  await addressFetchHandler(`${baseUrl}/api/address/${id}`, 'DELETE');
+  await fetchAuthHandler(`${baseUrl}/api/address/${id}`, 'DELETE');
 };
 
 export const getAddressFromGoogle = async (lat: number, lng: number) => {
-  const data = await addressFetchHandler(
+  const data = await fetchAuthHandler(
     `${googleMapsApiURL}${lat},${lng}&key=${
       import.meta.env.VITE_GOOGLE_MAPS_API_KEY
     }`

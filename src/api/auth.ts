@@ -1,10 +1,11 @@
-import { authFetchHandler, options } from '@/utils/auth';
+import { options } from '@/utils/auth';
 import { toast } from '@/components/ui/use-toast';
 import CookiesServices from '@/services/CookiesServices';
 import { loginCredentials, signupCredentials } from '@/types/types';
+import { fetchUnAuthHandler } from '@/utils/apiHelpers';
 
 export const loginMutationFn = async (userCredentials: loginCredentials) => {
-  const data = await authFetchHandler(
+  const data = await fetchUnAuthHandler(
     `${import.meta.env.VITE_SERVER_URL}/api/auth/local`,
     'POST',
     userCredentials
@@ -19,7 +20,7 @@ export const loginMutationFn = async (userCredentials: loginCredentials) => {
 };
 
 export const signupMutationFn = async (userCredintials: signupCredentials) => {
-  const data = await authFetchHandler(
+  const data = await fetchUnAuthHandler(
     `${import.meta.env.VITE_SERVER_URL}/api/auth/local/register`,
     'POST',
     userCredintials

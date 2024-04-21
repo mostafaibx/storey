@@ -1,12 +1,12 @@
 import { toast } from '@/components/ui/use-toast';
 import { cartItem } from '@/types/types';
-import { fetchHandler } from '@/utils/apiHelpers';
+import { fetchAuthHandler } from '@/utils/apiHelpers';
 
 const baseUrl = `${import.meta.env.VITE_SERVER_URL}/api/cart`;
 
 export const getCartItemsQueryFn = async () => {
   try {
-    const data = await fetchHandler(baseUrl);
+    const data = await fetchAuthHandler(baseUrl);
 
     return data;
   } catch (error) {
@@ -25,16 +25,16 @@ export const getCartItemsQueryFn = async () => {
 };
 
 export const updateCartMutationFn = async (cartItem: cartItem) => {
-  const data = await fetchHandler(baseUrl, 'POST', cartItem);
+  const data = await fetchAuthHandler(baseUrl, 'POST', cartItem);
   return data;
 };
 
 export const deleteCartItemsMutationFn = async (id: string) => {
-  const data = await fetchHandler(`${baseUrl}/${id}`, 'DELETE');
+  const data = await fetchAuthHandler(`${baseUrl}/${id}`, 'DELETE');
   return data;
 };
 
 export const clearCartMutationFn = async () => {
-  const data = await fetchHandler(`${baseUrl}`, 'DELETE');
+  const data = await fetchAuthHandler(`${baseUrl}`, 'DELETE');
   return data;
 };
