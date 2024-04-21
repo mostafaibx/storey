@@ -37,6 +37,7 @@ function App() {
           index: true,
           element: <HomePage />,
         },
+        { path: 'test', element: <TestPage /> },
         {
           path: 'about-us',
           element: <AboutUsPage />,
@@ -79,10 +80,6 @@ function App() {
             { path: 'profile', element: <ProfilePage /> },
             { path: 'orders', element: <OrdersPage /> },
             { path: 'ordersubmitted/:id', element: <OrderSubmitted /> },
-            {
-              path: 'test',
-              element: <TestPage />,
-            },
           ],
         },
       ],
