@@ -3,12 +3,11 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { lazy, Suspense } from 'react';
 import LoadingPage from './Pages/LoadingPage';
-import TestPage from './Pages/TestPage';
 const Rootlayout = lazy(() => import('./Pages/Rootlayout'));
 const ErrorPage = lazy(() => import('./Pages/ErrorPage'));
 const HomePage = lazy(() => import('./Pages/HomePage'));
 const LoginPage = lazy(() => import('./Pages/LoginPage'));
-/* const CartPage = lazy(() => import('./Pages/CartPage')); */
+const CartPage = lazy(() => import('./Pages/CartPage'));
 
 const LoggedinPrivateRoute = lazy(() => import('./Pages/LoggedinPrivateRoute'));
 const LoggedoutPrivateRoute = lazy(
@@ -37,7 +36,6 @@ function App() {
           index: true,
           element: <HomePage />,
         },
-        { path: '/test', element: <TestPage /> },
         {
           path: 'about-us',
           element: <AboutUsPage />,
@@ -79,6 +77,7 @@ function App() {
             { path: 'checkout/:id', element: <CheckoutPage /> },
             { path: 'profile', element: <ProfilePage /> },
             { path: 'orders', element: <OrdersPage /> },
+            { path: 'cart', element: <CartPage /> },
             { path: 'ordersubmitted/:id', element: <OrderSubmitted /> },
           ],
         },
